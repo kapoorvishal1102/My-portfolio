@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vishal Kumar | Senior Product Owner</title>
+
+<!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#16A34A',  // brand
+            accent:  '#16A34A',
+            dark:    '#0f172a',
+            light:   '#F8F9FA'
+          },
+          boxShadow: {
+            glow: '0 0 0 3px rgb(22 163 74 / 0.15), 0 10px 30px -10px rgb(22 163 74 / 0.35)'
+          },
+          backgroundImage: {
+            grain:
+              "url('data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'140\\' height=\\'140\\' viewBox=\\'0 0 140 140\\'><filter id=\\'n\\'><feTurbulence type=\\'fractalNoise\\' baseFrequency=\\'0.8\\' numOctaves=\\'2\\' stitchTiles=\\'stitch\\'/><feColorMatrix type=\\'saturate\\' values=\\'0\\'/><feComponentTransfer><feFuncA type=\\'table\\' tableValues=\\'0 0.08\\'/></feComponentTransfer></filter><rect width=\\'100%\\' height=\\'100%\\' filter=\\'url(%23n)\\'/></svg>')"
+          }
+        }
+      }
+    }
+  </script>
+
+<!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<!--Brand & chip CSS-->
+<style>
+  :root { color-scheme: light dark; --brand:#16A34A; }
+  html, body { height: 100%; }
+  body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+
+  .nav-active { color: var(--brand); font-weight: 700; }
+  .blob { filter: blur(40px); opacity: .55; }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  /* rotate chevron when open */
+  .approach-more[aria-expanded="true"] svg { transform: rotate(180deg) }
+
+  /* unified chip styles (pressed = brand) */
+  .cert-filter[aria-pressed="false"],
+  .xp-filter[aria-pressed="false"],
+  .proj-filter[aria-pressed="false"]{
+    background-color:#fff; color:#334155;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+  }
+  .cert-filter[aria-pressed="true"],
+  .xp-filter[aria-pressed="true"],
+  .proj-filter[aria-pressed="true"]{
+    background-color: rgb(22 163 74 / 0.12);
+    color: var(--brand);
+    box-shadow: inset 0 0 0 1px rgb(22 163 74 / 0.35);
+  }
+
+  :root { --header-h: 64px; }
+  body { padding-top: var(--header-h); }
+  [id] { scroll-margin-top: calc(var(--header-h) + 12px); }
+</style>
+<!--/Brand & chip CSS-->
+</head>
+<body class="bg-light text-dark antialiased selection:bg-primary/20">
+  <!-- Scroll progress bar -->
+  <div id="progress" class="fixed top-0 left-0 h-1 bg-primary z-[60] w-0"></div>
+
+  <!-- Header -->
+  <header class="supports-backdrop-blur:bg-white/70 bg-white/90 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center" aria-label="Primary">
+      <a href="#home" class="text-xl font-extrabold tracking-tight">Vishal Kumar</a>
+
+      <button id="menuBtn" class="md:hidden inline-flex items-center gap-2 text-gray-700 hover:text-primary" aria-label="Open menu">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+
+      <ul id="navLinks" class="hidden md:flex items-center gap-6">
+        <li><a href="#home" class="nav-link text-gray-600 hover:text-primary transition">Home</a></li>
+        <li><a href="#about" class="nav-link text-gray-600 hover:text-primary transition">About</a></li>
+        <li><a href="#experience" class="nav-link text-gray-600 hover:text-primary transition">Experience</a></li>
+        <li><a href="#approach" class="nav-link text-gray-600 hover:text-primary transition">Approach</a></li>
+        <li><a href="#projects" class="nav-link text-gray-600 hover:text-primary transition">Projects</a></li>
+        <li><a href="#certifications" class="nav-link text-gray-600 hover:text-primary transition">My Certifications</a></li>
+        <li><a href="#contact" class="nav-link text-gray-600 hover:text-primary transition">Contact</a></li>
+        <li><a href="#booking" class="nav-link text-gray-600 hover:text-primary transition">Meeting Request</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t bg-white">
+      <ul class="container mx-auto px-6 py-3 space-y-2">
+        <li><a class="block py-2" href="#home">Home</a></li>
+        <li><a class="block py-2" href="#about">About</a></li>
+        <li><a class="block py-2" href="#experience">Experience</a></li>
+        <li><a class="block py-2" href="#approach">Approach</a></li>
+        <li><a class="block py-2" href="#projects">Projects</a></li>
+        <li><a class="block py-2" href="#certifications">My Certifications</a></li>
+        <li><a class="block py-2" href="#contact">Contact</a></li>
+        <li><a class="block py-2" href="#booking">Meeting Request</a></li>
+      </ul>
+    </div>
+  </header>
+
+<main>
+  <!-- HERO -->
+<section id="home" class="relative overflow-hidden bg-gradient-to-b from-white via-white to-stone-50">
+  <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center pt-14 md:pt-16 pb-10 md:pb-14">
+    <!-- Left: copy -->
+    <div class="max-w-2xl">
+      <p class="text-sm font-semibold tracking-wide text-slate-500 uppercase">Hi, I’m Vishal Kumar</p>
+      <h1 class="mt-3 text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-slate-900">
+        Senior Product Owner | AI • Defense • FinTech
+      </h1>
+      <p class="mt-5 text-lg md:text-xl text-slate-600">
+        14+ years delivering scalable, measurable products in <span class="font-semibold">FinTech</span>, 
+        <span class="font-semibold">Defense</span>, and <span class="font-semibold">AI (GeoAI & Digital Twin)</span>. 
+        I align stakeholders, ship fast in small slices, and track success through activation, time-to-value, and retention.
+      </p>
+      <div class="mt-5 flex flex-wrap items-center gap-2">
+        <span class="px-4 py-2 text-sm font-semibold uppercase tracking-wide text-emerald-800 bg-emerald-50 ring-1 ring-emerald-300 rounded-full">Key Skills</span>
+        <span class="px-3 py-1.5 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Product Strategy</span>
+        <span class="px-3 py-1.5 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Regulatory/Compliance</span>
+        <span class="px-3 py-1.5 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Team Leadership</span>
+      </div>
+      <div class="mt-5 flex flex-wrap items-center gap-2" aria-label="Sectors I work in">
+        <span class="px-4 py-2 text-sm font-semibold uppercase tracking-wide text-emerald-800 bg-emerald-50 ring-1 ring-emerald-300 rounded-full">Sectors I worked in</span>
+        <span class="px-4 py-2 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Defense/EW</span>
+        <span class="px-4 py-2 text-sm rounded-full bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100">AI (GeoAI & Digital Twin)</span>
+        <span class="px-4 py-2 text-sm rounded-full bg-cyan-50 text-cyan-700 ring-1 ring-cyan-100">FinTech</span>
+      </div>
+    <div class="mt-6 flex flex-wrap items-center gap-2" aria-label="How I work">
+    <span class="px-4 py-2 text-sm font-semibold uppercase tracking-wide text-emerald-800 bg-emerald-50 ring-1 ring-emerald-300 rounded-full">
+      How I work
+    </span>
+    <span class="px-3 py-1.5 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Outcome-first discovery</span>
+    <span class="px-3 py-1.5 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Predictable delivery</span>
+    <span class="px-3 py-1.5 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Measured impact</span>
+  </div>
+
+      <div class="mt-7 flex flex-wrap items-center gap-3">
+      <!-- Primary -->
+      <a
+        href="mailto:kapoor.vishal1102@gmail.com?subject=Hi%20Vishal%20%E2%80%93%20let%E2%80%99s%20connect"
+        aria-label="Email Vishal"
+        class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold
+              bg-primary text-white shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0
+              transition focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50">
+        <svg class="w-5 h-5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        Say hello
+      </a>
+
+      <!-- Secondary (neutral) -->
+     <a
+        href="#projects"
+        aria-label="See projects"
+        class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold
+              bg-primary text-white
+              shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0
+              transition focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50">
+        <svg class="w-5 h-5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+        See my work
+      </a>
+
+      <!-- Brand outline -->
+      <button
+        type="button"
+        data-open-calendly
+        class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold
+              bg-primary text-white
+              shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0
+              transition focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50">
+        <svg class="w-5 h-5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2v-6H3v6a2 2 0 002 2z"/>
+        </svg>
+        Book 30 min
+      </button>
+      </div>
+    </div>
+
+    <!-- Right: single photo (keep only here) -->
+    <div class="relative">
+      <div class="rounded-2xl overflow-hidden ring-1 ring-black/5 shadow-xl bg-white">
+        <img src="Images/My-Image.png" alt="Vishal Kumar" class="w-full h-[420px] md:h-[520px] object-cover object-top" />
+      </div>
+      <div class="absolute -bottom-4 left-4 right-auto hidden md:flex items-center gap-2 bg-white/90 backdrop-blur px-3 py-2 rounded-xl ring-1 ring-slate-200 shadow">
+        <span class="inline-block h-2 w-2 rounded-full bg-emerald-500"></span>
+        <span class="text-sm text-slate-700">Open to interesting product problems</span>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /HERO -->
+<!-- ABOUT -->
+<section id="about" class="pt-0 md:pt-8 pb-14 bg-white" aria-label="About">
+  <div class="container mx-auto px-6 grid md:grid-cols-3 gap-10 items-start">
+    <!-- Left: story + strengths -->
+    <div class="md:col-span-2">
+      <h2 class="text-4xl font-bold mb-4">About Me</h2>
+      <p class="text-gray-700 leading-relaxed text-lg">
+        I’m a product leader who thrives on simplifying complex, regulated problems. I focus on the 
+        <em>smallest valuable release</em>, validate with real usage, and scale what works.
+      </p>
+      <p class="mt-3 text-gray-600">
+        14+ years across <strong>FinTech (payments, remittance, KYC/AML)</strong>, SaaS, and 
+        <strong>Digital Twin / GeoAI</strong> — primarily in the UAE, building high-impact products for government, enterprise, and regulated sectors.
+      </p>
+      <p class="mt-3 text-gray-600">
+        Outside of work, I recharge with <span class="italic">chess matches with my daughter and testing new recipes she gets to score</span>. 
+        Always up for conversations about product trade-offs and building great teams.
+      </p>
+
+      <!-- What I bring -->
+      <h3 class="mt-6 text-sm font-semibold text-gray-500 uppercase">What I bring</h3>
+      <ul class="mt-3 grid sm:grid-cols-2 gap-3 text-gray-700">
+        <li class="rounded-xl p-4 ring-1 ring-slate-200 bg-gradient-to-r from-emerald-50 to-white">
+          <p class="font-medium">Outcome-driven discovery</p>
+          <p class="text-sm text-gray-600 mt-1">Talk to users, map Jobs-to-Be-Done, define measurable success upfront.</p>
+        </li>
+        <li class="rounded-xl p-4 ring-1 ring-slate-200 bg-gradient-to-r from-blue-50 to-white">
+          <p class="font-medium">Predictable delivery</p>
+          <p class="text-sm text-gray-600 mt-1">Short cycles, visible roadmaps, clear definition of “done”.</p>
+        </li>
+        <li class="rounded-xl p-4 ring-1 ring-slate-200 bg-gradient-to-r from-indigo-50 to-white">
+          <p class="font-medium">Compliance without friction</p>
+          <p class="text-sm text-gray-600 mt-1">Ship fast in regulated spaces while respecting guardrails.</p>
+        </li>
+        <li class="rounded-xl p-4 ring-1 ring-slate-200 bg-gradient-to-r from-cyan-50 to-white">
+          <p class="font-medium">Data-driven decisions</p>
+          <p class="text-sm text-gray-600 mt-1">Track activation, TTV, retention; iterate with experiments.</p>
+        </li>
+      </ul>
+
+      <!-- Selected results -->
+      <h3 class="mt-6 text-sm font-semibold text-gray-500 uppercase">Selected Results</h3>
+      <ul class="mt-3 text-gray-700 space-y-1.5">
+        <li><strong>30% faster</strong> permit cycle times via Digital Twin workflow redesign.</li>
+        <li><strong>50% higher</strong> onboarding completion with guided ID & document capture (FinTech).</li>
+        <li><strong>30% growth</strong> in digital remittance volume from pricing engine + funnel optimization.</li>
+      </ul>
+      <!-- Focus areas -->
+      <div class="mt-6 flex flex-wrap gap-2">
+        <span class="px-3 py-1 text-sm rounded-full bg-blue-50 text-blue-700">GeoAI</span>
+        <span class="px-3 py-1 text-sm rounded-full bg-indigo-50 text-indigo-700">Digital Twins</span>
+        <span class="px-3 py-1 text-sm rounded-full bg-cyan-50 text-cyan-700">FinTech</span>
+        <span class="px-3 py-1 text-sm rounded-full bg-emerald-50 text-emerald-700">SaaS</span>
+        <span class="px-3 py-1 text-sm rounded-full bg-amber-50 text-amber-700">AML/KYC</span>
+        <span class="px-3 py-1 text-sm rounded-full bg-rose-50 text-rose-700">Online/Mobile Channels</span>
+      </div>
+    </div>
+
+    <!-- Right: Now / Previously cards -->
+    <aside class="space-y-4">
+      <div class="rounded-2xl p-5 bg-gradient-to-r from-sky-50 to-white ring-1 ring-sky-100 shadow">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-semibold text-sky-700 uppercase tracking-wide">Now</h3>
+          <span class="text-xs text-gray-500">Space42</span>
+        </div>
+        <p class="mt-2 text-gray-700 font-medium">Active collaborations</p>
+        <ul class="mt-3 grid gap-2 text-sm text-gray-700">
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 mt-0.5 text-sky-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+            Government of Ajman — Digital Twin initiatives
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 mt-0.5 text-sky-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+            Department of Health — Abu Dhabi (DOH): Health Licensing Facility
+          </li>
+        </ul>
+        <p class="mt-3 text-xs text-gray-500">More details available on request.</p>
+      </div>
+
+      <div class="rounded-2xl p-5 bg-gradient-to-r from-violet-50 to-white ring-1 ring-violet-100 shadow">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-semibold text-violet-700 uppercase tracking-wide">Previously</h3>
+          <span class="text-xs text-gray-500">UAE Exchange</span>
+        </div>
+        <p class="mt-2 text-gray-700 font-medium">Digital platforms transformation</p>
+        <ul class="mt-3 grid gap-2 text-sm text-gray-700">
+          <li class="flex gap-2"><svg class="w-4 h-4 mt-0.5 text-violet-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Cross-border remittance & utilities platform + mobile app</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 mt-0.5 text-violet-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Pricing Engine as a Service → ~+30% revenue/volume lift</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 mt-0.5 text-violet-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> IDEMIA onboarding ~50% faster; Actimize false positives down</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+<!--/ABOUT-->
+
+  <!-- EXPERIENCE -->
+    <section id="experience" class="scroll-mt-24 pt-10 md:pt-14 pb-10 md:pb-12 bg-white relative">
+    <div class="container mx-auto px-6">
+      <header class="text-center mb-8 md:mb-10">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Experience</h2>
+        <p class="text-gray-600 mt-3">Impact stories across FinTech, Payments and Geospatial AI.</p>
+        <br/>
+        <!-- Experience filters -->
+        <!-- Experience filters -->
+      <div class="sticky top-[calc(var(--header-h)+8px)] z-40 bg-white/80 backdrop-blur supports-backdrop-blur:bg-white/70 -mx-6 px-6 py-2 mb-6 border-b border-gray-200/60">
+        <div class="flex flex-wrap justify-center items-center gap-2">
+          <button type="button" class="xp-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="xp-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="Space42" aria-pressed="false">Space42</button>
+          <button type="button" class="xp-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="UAE-Exchange" aria-pressed="false">UAE-Exchange</button>
+          <button id="xpToggleDetails" class="px-1.5 py-2 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" aria-expanded="false">Expand All</button>
+        </div>
+      </div>
+      </header>
+      <div class="relative">
+        <span class="hidden lg:block absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-blue-100 via-blue-200 to-transparent"></span>
+
+        <ol class="space-y-10">
+          <!-- ROLE 1 — Space42 -->
+          <li class="relative pl-14" data-company="Space42">
+            <span class="hidden lg:block absolute left-4 top-5 w-5 h-5 rounded-full bg-primary shadow-glow ring-4 ring-white"></span>
+
+            <article class="xp-card group relative rounded-3xl bg-white p-7 shadow ring-1 ring-black/5">
+              <div class="flex items-center gap-5">
+                <img src="Images/Space42-Logo.png" alt="Space42 (Bayanat + Yahsat) logo" title="Space42 - A Merger of Bayanat and Yahsat"
+                     loading="lazy" decoding="async"
+                     class="w-16 h-16 rounded-xl ring-1 ring-black/5 object-contain bg-white p-1">
+                <div>
+                  <h3 class="text-2xl font-bold">Senior Product Owner</h3>
+                  <p class="text-gray-600 text-sm">Space42 (Bayanat + Yahsat) • Abu Dhabi · Oct 2020 – Present</p>
+                </div>
+              </div>
+
+              <p class="mt-4 text-gray-700">
+                Led the <span class="font-medium">Ajman Digital Twin Platform</span> and 
+                <span class="font-medium">DOH Health Licensing Facility</span>, driving discovery → delivery → measurable outcomes across GeoAI and GovTech.
+              </p>
+              <div class="mt-6 grid grid-cols-3 gap-3">
+                <div class="rounded-2xl bg-blue-50 p-5 text-center">
+                  <div class="text-3xl font-extrabold text-primary" data-count="25">0%</div>
+                  <div class="text-xs text-gray-600 mt-1">On-time delivery ↑</div>
+                  <p class="text-[11px] text-gray-600 mt-2">Release trains, visual roadmaps</p>
+                </div>
+                <div class="rounded-2xl bg-indigo-50 p-5 text-center">
+                  <div class="text-3xl font-extrabold text-primary" data-count="30">0%</div>
+                  <div class="text-xs text-gray-600 mt-1">Cycle time ↓</div>
+                  <p class="text-[11px] text-gray-600 mt-2">Lean specs, fewer handoffs</p>
+                </div>
+                <div class="rounded-2xl bg-cyan-50 p-5 text-center">
+                  <div class="text-3xl font-extrabold text-primary" data-count="25">0%</div>
+                  <div class="text-xs text-gray-600 mt-1">Retention/usage ↑</div>
+                  <p class="text-[11px] text-gray-600 mt-2">Journey fixes, feedback loops</p>
+                </div>
+              </div>
+
+              <details class="mt-6 rounded-2xl bg-gray-50/70 p-5">
+                <summary class="cursor-pointer font-semibold">What moved the needle</summary>
+
+                <div class="mt-3 grid md:grid-cols-2 gap-3 text-gray-700">
+                  <div>
+                    <p class="text-sm uppercase tracking-wide text-gray-500">Key initiatives</p>
+                    <ul class="list-disc ps-5 space-y-1.5">
+                      <li>
+                        <span class="font-medium">Ajman Digital Twin</span> — unified 2D/3D geospatial viewer, asset registry,
+                        and permit workflows; set success metrics on active planners and permit cycle time.
+                      </li>
+                      <li>
+                        <span class="font-medium">DOH Health Licensing Facility</span> — end-to-end licensing portal consolidation;
+                        rebuilt onboarding with identity verification and straight-through rules.
+                      </li>
+                      <li>
+                        <span class="font-medium">GeoAI change detection</span> — SAR/optical fusion alerts for field ops;
+                        weekly ML–product iteration loop on precision/recall.
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <p class="text-sm uppercase tracking-wide text-gray-500">My role</p>
+                    <ul class="list-disc ps-5 space-y-1.5">
+                      <li>Outcome-first discovery (interviews, JTBD, KPI trees, guardrail metrics).</li>
+                      <li>Backlog &amp; release planning (ART/PI cadence, dependency mapping, risk slicing).</li>
+                      <li>Instrumentation (event taxonomy, dashboards for DAU/time-to-value/retention).</li>
+                      <li>Stakeholder alignment (Ajman Gov, DOH Abu Dhabi, internal GTM/ops).</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-4 grid md:grid-cols-2 gap-3 text-gray-700">
+                  <div>
+                    <p class="text-sm uppercase tracking-wide text-gray-500">Selected outcomes</p>
+                     <ul class="list-disc ps-5 mt-3 space-y-1.5 text-gray-700">
+                      <li>Cut permit processing time by <strong>30%</strong> with workflow redesign.</li>
+                      <li>Increased licensing onboarding completion by <strong>50%</strong> with guided flows.</li>
+                      <li>Reduced GeoAI alert review time by <strong>35%</strong> via precision tuning & UX improvements.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="text-sm uppercase tracking-wide text-gray-500">Tooling / stack (prod)</p>
+                    <p class="mt-1">
+                      Jira, Confluence, Visio, Figma, Postman · CesiumJS / Mapbox GL, Esri/QGIS · Python notebooks for analysis ·
+                      Power BI (dashboards).
+                    </p>
+                  </div>
+                </div>
+              </details>
+            </article>
+          </li>
+
+          <!-- ROLE 2 — UAE Exchange -->
+          <li class="relative pl-14" data-company="UAE-Exchange">
+            <span class="hidden lg:block absolute left-4 top-5 w-5 h-5 rounded-full bg-primary shadow-glow ring-4 ring-white"></span>
+
+            <article class="xp-card group relative rounded-3xl bg-white p-7 shadow ring-1 ring-black/5">
+              <div class="flex items-center gap-5">
+                <img src="Images/UAEEX-Logo.png" alt="UAE Exchange logo" title="UAE Exchange — a Finablr company"
+                     loading="lazy" decoding="async"
+                     class="w-16 h-16 rounded-xl ring-1 ring-black/5 object-contain bg-white p-1">
+                <div>
+                  <h3 class="text-2xl font-bold">Associate Manager (Senior Product Owner)</h3>
+                  <p class="text-gray-600 text-sm">UAE Exchange • Abu Dhabi · Sep 2014 – Sep 2020</p>
+                </div>
+              </div>
+
+              <p class="mt-4 text-gray-700">
+                Led the <span class="font-medium">digital remittance &amp; bill-pay platform</span> and mobile app rollout, balancing
+                compliance, UX, and delivery speed across multiple regions.
+              </p>
+
+              <div class="mt-6 grid grid-cols-3 gap-3">
+                <div class="rounded-2xl bg-blue-50 p-5 text-center">
+                  <div class="text-3xl font-extrabold text-primary" data-count="30">0%</div>
+                  <div class="text-xs text-gray-600 mt-1">Volume ↑</div>
+                  <p class="text-[11px] text-gray-600 mt-2">Pricing engine + funnel fixes</p>
+                </div>
+                <div class="rounded-2xl bg-indigo-50 p-5 text-center">
+                  <div class="text-3xl font-extrabold text-primary" data-count="50">0%</div>
+                  <div class="text-xs text-gray-600 mt-1">Onboarding time ↓</div>
+                  <p class="text-[11px] text-gray-600 mt-2">IDEMIA digital identity</p>
+                </div>
+                <div class="rounded-2xl bg-cyan-50 p-5 text-center">
+                  <div class="text-3xl font-extrabold text-primary" data-count="25">0%</div>
+                  <div class="text-xs text-gray-600 mt-1">Adoption ↑</div>
+                  <p class="text-[11px] text-gray-600 mt-2">Iterated weekly on data</p>
+                </div>
+              </div>
+
+              <details class="mt-6 rounded-2xl bg-gray-50/70 p-5">
+                <summary class="cursor-pointer font-semibold">How we scaled it</summary>
+
+                <div class="mt-3 grid md:grid-cols-2 gap-3 text-gray-700">
+                  <div>
+                    <p class="text-sm uppercase tracking-wide text-gray-500">Key initiatives</p>
+                    <ul class="list-disc ps-5 space-y-1.5">
+                      <li><span class="font-medium">Digital cross-border remittance &amp; utilities</span> — rebuilt core flows, streamlined KYC/AML checkpoints.</li>
+                      <li><span class="font-medium">Pricing Engine as a Service</span> — real-time FX/fee strategies; drove +30% revenue/volume on priority corridors.</li>
+                      <li><span class="font-medium">False-positive reduction</span> — risk rule tuning &amp; review playbooks to cut compliance friction.</li>
+                      <li><span class="font-medium">Malaysia agency business launch</span> — channel enablement → ~+20% revenue uplift.</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <p class="text-sm uppercase tracking-wide text-gray-500">My role</p>
+                    <ul class="list-disc ps-5 space-y-1.5">
+                      <li>Product discovery (interviews, data review, JTBD) → outcome metrics for each epic.</li>
+                      <li>Backlog &amp; release planning across mobile/web, risk, and core systems.</li>
+                      <li>Conversion instrumentation (event taxonomy, funnel dashboards) and weekly review.</li>
+                      <li>Stakeholder alignment across Compliance, Ops, IT, and country managers.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-4 grid md:grid-cols-2 gap-3 text-gray-700">
+                  <div>
+                    <p class="mt-4 text-gray-700">
+                      Scaled the <span class="font-medium">Digital Remittance & Bill-Payment platform</span> across multiple regions, balancing compliance and UX.
+                    </p>
+                    <ul class="list-disc ps-5 mt-3 space-y-1.5 text-gray-700">
+                      <li>Boosted remittance volume by <strong>30%</strong> via dynamic pricing engine.</li>
+                      <li>Improved onboarding completion by <strong>50%</strong> through digital ID & doc capture.</li>
+                      <li>Cut compliance false positives by <strong>25%</strong> through risk rule tuning + UX fixes.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="text-sm uppercase tracking-wide text-gray-500">Tooling / stack</p>
+                    <p class="mt-1">
+                      Jira, Confluence, Figma • Postman • Analytics dashboards •
+                      Mobile/web apps + core remittance, risk rules, payment rails integrations.
+                    </p>
+                  </div>
+                </div>
+              </details>
+            </article>
+          </li>
+
+          <!-- ROLE 3 — UAE Exchange (earlier) -->
+          <li class="relative pl-14" data-company="UAE-Exchange">
+            <span class="hidden lg:block absolute left-4 top-5 w-5 h-5 rounded-full bg-primary shadow-glow ring-4 ring-white"></span>
+
+            <article class="xp-card group relative rounded-3xl bg-white p-7 shadow ring-1 ring-black/5">
+              <div class="flex items-center gap-5">
+                <img src="Images/UAEEX-Logo.png" alt="UAE Exchange logo" title="UAE Exchange — early product ownership"
+                     loading="lazy" decoding="async"
+                     class="w-16 h-16 rounded-xl ring-1 ring-black/5 object-contain bg-white p-1">
+                <div>
+                  <h3 class="text-2xl font-bold">Assistant Manager (Product Owner)</h3>
+                  <p class="text-gray-600 text-sm">UAE Exchange • Abu Dhabi · Jul 2009 – Sep 2014</p>
+                </div>
+              </div>
+
+              <p class="mt-4 text-gray-700">
+                Early ownership across remittance &amp; retail payments — set up the habits of research-led roadmapping,
+                lean delivery, and measurable releases.
+              </p>
+
+              <div class="mt-6 grid grid-cols-3 gap-3">
+                <div class="rounded-2xl bg-blue-50 p-5 text-center">
+                  <div class="text-3xl font-extrabold text-primary" data-count="20">0%</div>
+                  <div class="text-xs text-gray-600 mt-1">Customer satisfaction ↑</div>
+                  <p class="text-[11px] text-gray-600 mt-2">Journey fixes from research</p>
+                </div>
+                <div class="rounded-2xl bg-indigo-50 p-5 text-center">
+                  <div class="text-3xl font-extrabold text-primary" data-count="25">0%</div>
+                  <div class="text-xs text-gray-600 mt-1">Time-to-market ↓</div>
+                  <p class="text-[11px] text-gray-600 mt-2">Lean specs &amp; releases</p>
+                </div>
+                <div class="rounded-2xl bg-cyan-50 p-5 text-center">
+                  <div class="text-3xl font-extrabold text-primary" data-count="30">0%</div>
+                  <div class="text-xs text-gray-600 mt-1">Digital channel share ↑</div>
+                  <p class="text-[11px] text-gray-600 mt-2">Web &amp; self-service rollout</p>
+                </div>
+              </div>
+
+              <details class="mt-6 rounded-2xl bg-gray-50/70 p-5">
+                <summary class="cursor-pointer font-semibold">Highlights</summary>
+
+                <div class="mt-3 grid md:grid-cols-2 gap-3 text-gray-700">
+                  <div>
+                    <p class="text-sm uppercase tracking-wide text-gray-500">Key initiatives</p>
+                    <ul class="list-disc ps-5 space-y-1.5">
+                      <li><span class="font-medium">Retail remittance enhancements</span> — counter → digital parity on fees, corridors, &amp; limits.</li>
+                      <li><span class="font-medium">Online self-service</span> — launched web flows for repeats, receipts, and status tracking.</li>
+                      <li><span class="font-medium">KYC/AML baseline</span> — standardized capture &amp; review steps; reduced rework.</li>
+                      <li><span class="font-medium">CRM &amp; campaigns</span> — segmented offers to retain high-value senders.</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <p class="text-sm uppercase tracking-wide text-gray-500">My role</p>
+                    <ul class="list-disc ps-5 space-y-1.5">
+                      <li>Backlog ownership, grooming, and iterative specs with Design &amp; Eng.</li>
+                      <li>Release planning &amp; UAT with branches, Ops, and vendors.</li>
+                      <li>Basic analytics setup; weekly reviews on drop-offs and errors.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-4 grid md:grid-cols-2 gap-3 text-gray-700">
+                  <div>
+                    <p class="mt-4 text-gray-700">
+                      Early product ownership across remittance & retail payments — introduced research-led roadmapping and measurable releases.
+                    </p>
+                    <ul class="list-disc ps-5 mt-3 space-y-1.5 text-gray-700">
+                      <li>Raised NPS/CSAT by <strong>20%</strong> after customer journey fixes.</li>
+                      <li>Reduced release cycle time by <strong>25%</strong> through lean specs & smaller scopes.</li>
+                      <li>Increased digital channel share by <strong>30%</strong> after launching online self-service.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="text-sm uppercase tracking-wide text-gray-500">Tooling / stack</p>
+                    <p class="mt-1">
+                      Jira, Confluence, SQL/Excel for analysis • Web channel + core remittance integrations.
+                    </p>
+                  </div>
+                </div>
+              </details>
+            </article>
+          </li>
+        </ol>
+
+        <!-- CV button -->
+        <div class="mt-8">
+          <a href="assets/Vishal-Kumar-CV.pdf" class="inline-flex items-center gap-2 border px-4 py-2 rounded-lg hover:shadow">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14m0 0-6-6m6 6 6-6"/></svg>
+            Download full CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /EXPERIENCE -->
+  
+  <!-- PROJECTS -->
+  <section id="projects" class="pt-10 md:pt-12 pb-16 md:pb-20 bg-white" aria-label="Projects">
+    <div class="container mx-auto px-6">
+      <header class="text-center mb-8">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">My Work &amp; Case Studies</h2>
+        <p class="text-gray-600 mt-2">Key outcomes and what I built — no clicks required.</p>
+      </header>
+      <div class="mb-6 flex flex-wrap items-center justify-center gap-2">
+        <button type="button" class="proj-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 hover:text-primary"
+                data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="proj-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 hover:text-primary"
+                data-filter="domain:DigitalTwin" aria-pressed="false">Digital Twin</button>
+        <button type="button" class="proj-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 hover:text-primary"
+                data-filter="domain:EW" aria-pressed="false">EW / Defense</button>
+        <button type="button" class="proj-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 hover:text-primary"
+                data-filter="domain:Payments" aria-pressed="false">Payments</button>
+        <button type="button" class="proj-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 hover:text-primary"
+                data-filter="domain:FX" aria-pressed="false">FX</button>
+
+        <label class="sr-only" for="projSearch">Search projects</label>
+        <input id="projSearch" type="search" placeholder="Search by feature, stack, etc."
+               class="w-full sm:w-72 px-3 py-2 text-sm rounded-lg ring-1 ring-gray-200 focus:ring-2 focus:ring-primary outline-none" />
+      </div>
+
+      <div id="projGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- (All projects) -->
+        <!-- SPACE42 — EW / REP -->
+        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+                 data-company="Space42" data-domain="EW"
+                 data-keywords="electronic warfare ew alerts rep recognized picture sensor fusion comint elint radar reporting automation">
+          <div class="p-5 md:p-6">
+            <div class="flex items-start gap-4">
+              <img src="https://placehold.co/320x200/081226/ffffff?text=EW+Ops"
+                   alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" />
+              <div class="flex-1">
+                <div class="flex items-start justify-between gap-3">
+                  <h3 class="text-lg font-bold">Recognized EW Picture (REP) &amp; Alerting</h3>
+                  <span class="px-2 py-0.5 text-xs rounded-md bg-blue-50 text-blue-700 ring-1 ring-blue-100">EW / Defense</span>
+                </div>
+                <p class="text-gray-600 text-sm mt-1">
+                  <span class="font-medium">Space42</span> • Role: Product Owner + BA • 2 years
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-4 grid sm:grid-cols-2 gap-3">
+              <div class="rounded-xl p-4 bg-gradient-to-r from-indigo-50 to-white ring-1 ring-indigo-100">
+                <p class="text-xs font-semibold text-indigo-700 uppercase tracking-wide">What I shipped</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>Real-time REP with COMINT/ELINT/Radar fusion</li>
+                  <li>Rule-based alerts & threat scoring to units</li>
+                  <li>Operator reporting automation (replaced PPT/Excel)</li>
+                </ul>
+              </div>
+              <div class="rounded-xl p-4 bg-gradient-to-r from-blue-50 to-white ring-1 ring-blue-100">
+                <p class="text-xs font-semibold text-blue-700 uppercase tracking-wide">Measured</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>Time-to-alert ↓</li>
+                  <li>Operator reporting time ↓</li>
+                  <li>Duplicate/false tracks ↓</li>
+                  <li>REP coverage consistency ↑</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-4 rounded-xl ring-1 ring-black/5 p-2">
+              <div class="proj-gallery flex overflow-x-auto snap-x snap-mandatory gap-2 p-2" tabindex="0" aria-label="EW gallery">
+                <img src="Images/EW-ops-Map.png" title="EW Ops Map (NATO)" class="h-40 rounded-lg snap-start" alt="Operational map" />
+                <img src="Images/Radar-Identification-process.png" title="Emitter Identification" class="h-40 rounded-lg snap-start" alt="Emitter timeline" />
+                <img src="Images/Radar-Multi-Label-Identification.jpg" title="Multi-label-Identification" class="h-40 rounded-lg snap-start" alt="Alert rules" />
+              </div>
+            </div>
+
+            <button class="mt-3 text-sm font-semibold text-primary underline underline-offset-2"
+                    type="button" data-more="#ew-more">More details</button>
+            <div id="ew-more" class="hidden mt-3 text-sm text-gray-700">
+              <div class="grid md:grid-cols-2 gap-3">
+                <ul class="list-disc ps-5 space-y-1.5">
+                  <li>Discovery with EW operators & planners</li>
+                  <li>REP model: tracks, emitters, links, confidence</li>
+                  <li>Alert taxonomy & routing (unit/role/severity)</li>
+                  <li>UAT + field-exercise feedback loop</li>
+                </ul>
+                <ul class="list-disc ps-5 space-y-1.5">
+                  <li>Map/timeline interactions prototypes</li>
+                  <li>Reporting automation</li>
+                  <li>HQ surfaces; TTA/workload dashboards</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- SPACE42 — Ajman Digital Twin -->
+        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+                 data-company="Space42" data-domain="DigitalTwin"
+                 data-keywords="digital twin ajman kpi dashboards safety economy liveability tourism utilities transport overlays dark mode personas">
+          <div class="p-5 md:p-6">
+            <div class="flex items-start gap-4">
+              <img src="https://placehold.co/320x200/0D6EFD/ffffff?text=Ajman+DT"
+                   alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" />
+              <div class="flex-1">
+                <div class="flex items-start justify-between gap-3">
+                  <h3 class="text-lg font-bold">Ajman Digital Twin — Quality of Life</h3>
+                  <span class="px-2 py-0.5 text-xs rounded-md bg-blue-50 text-blue-700 ring-1 ring-blue-100">Digital Twin</span>
+                </div>
+                <p class="text-gray-600 text-sm mt-1">
+                  <span class="font-medium">Space42</span> • Role: Product Owner + BA • 6 months
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-4 grid sm:grid-cols-2 gap-3">
+              <div class="rounded-xl p-4 bg-gradient-to-r from-indigo-50 to-white ring-1 ring-indigo-100">
+                <p class="text-xs font-semibold text-indigo-700 uppercase tracking-wide">What I shipped</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>City layers fused + KPI dashboards (6 domains)</li>
+                  <li>Scenario overlays; role-driven UX</li>
+                  <li>Dark/light modes, Multi-language support & strong legends</li>
+                </ul>
+              </div>
+              <div class="rounded-xl p-4 bg-gradient-to-r from-blue-50 to-white ring-1 ring-blue-100">
+                <p class="text-xs font-semibold text-blue-700 uppercase tracking-wide">Measured</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>Safety, Economy, Liveability</li>
+                  <li>Tourism, Utilities, Transport KPIs</li>
+                  <li>Freshness/latency targets met</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-4 rounded-xl ring-1 ring-black/5 p-2">
+              <div class="proj-gallery flex overflow-x-auto snap-x snap-mandatory gap-2 p-2" tabindex="0" aria-label="Ajman gallery">
+                <img src="Images/Digital-Twin-Dashboard.png" title="Digital Twin Dashboard" class="h-40 rounded-lg snap-start" alt="KPI dashboards" />
+                <img src="Images/DT.png" title="City Overlays" class="h-40 rounded-lg snap-start" alt="City overlays" />
+                <img src="Images/Traffic-scenario.png" title="Traffic Simulation" class="h-40 rounded-lg snap-start" alt="Traffic & scenarios" />
+              </div>
+            </div>
+
+            <button class="mt-3 text-sm font-semibold text-primary underline underline-offset-2"
+                    type="button" data-more="#adt-more">More details</button>
+            <div id="adt-more" class="hidden mt-3 text-sm text-gray-700">
+              <div class="grid md:grid-cols-2 gap-3">
+                <ul class="list-disc ps-5 space-y-1.5">
+                  <li>KPI taxonomy & acceptance criteria</li>
+                  <li>Overlay spec: hotspots, density, scenarios</li>
+                  <li>Persona mapping & role-based nav</li>
+                </ul>
+                <ul class="list-disc ps-5 space-y-1.5">
+                  <li>Spiral delivery; milestone UAT (DDA)</li>
+                  <li>Dashboard prototypes per domain</li>
+                  <li>Governance & BRD/test handover</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- UAE EXCHANGE — Dynamic Pricing Engine -->
+        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+                 data-company="UAE-Exchange" data-domain="FinTech"
+                 data-keywords="dynamic pricing fx fees remittance corridor elasticity rules ml ab-test compliance guardrails override api">
+          <div class="p-5 md:p-6">
+            <div class="flex items-start gap-4">
+              <img src="https://placehold.co/320x200/0D6EFD/ffffff?text=Pricing"
+                   alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" />
+              <div class="flex-1">
+                <div class="flex items-start justify-between gap-3">
+                  <h3 class="text-lg font-bold">Dynamic Pricing Engine (Remittance & Fees)</h3>
+                  <span class="px-2 py-0.5 text-xs rounded-md bg-blue-50 text-blue-700 ring-1 ring-blue-100">FX</span>
+                </div>
+                <p class="text-gray-600 text-sm mt-1"><span class="font-medium">UAE Exchange</span> • PO + BA • ~6 months</p>
+              </div>
+            </div>
+
+            <div class="mt-4 grid sm:grid-cols-2 gap-3">
+              <div class="rounded-xl p-4 bg-gradient-to-r from-indigo-50 to-white ring-1 ring-indigo-100">
+                <p class="text-xs font-semibold text-indigo-700 uppercase tracking-wide">What I shipped</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>Real-time pricing: volume, corridor, risk</li>
+                  <li>Rules + optional ML; guardrails & audit</li>
+                  <li>A/B framework and KPI tree</li>
+                </ul>
+              </div>
+              <div class="rounded-xl p-4 bg-gradient-to-r from-blue-50 to-white ring-1 ring-blue-100">
+                <p class="text-xs font-semibold text-blue-700 uppercase tracking-wide">Measured</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>~+30% volume on priority corridors</li>
+                  <li>Margin per txn & win-rate ↑</li>
+                  <li>P95 response faster; High Availability maintained</li>
+                </ul>
+              </div>
+            </div>
+
+            <button class="mt-3 text-sm font-semibold text-primary underline underline-offset-2"
+                    type="button" data-more="#pricing-more">More details</button>
+            <div id="pricing-more" class="hidden mt-3 text-sm text-gray-700">
+              <div class="grid md:grid-cols-2 gap-3">
+                <ul class="list-disc ps-5 space-y-1.5">
+                  <li>Policy: corridor rules, segments, guardrails</li>
+                  <li>Service contract: quote/commit/override</li>
+                  <li>Integrations: FX, risk, CRM, analytics</li>
+                </ul>
+                <ul class="list-disc ps-5 space-y-1.5">
+                  <li>Dashboards & guardrail alerts</li>
+                  <li>Incidents playbooks & rollbacks</li>
+                  <li>Stakeholder alignment (Compliance/Ops/CM)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- UAE EXCHANGE — Utility Payments & Mobile Top-ups -->
+        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+                 data-company="UAE-Exchange" data-domain="Payments"
+                 data-keywords="utility bill pay water electricity gas internet telecom gulf gcc psp credit card 3ds tokenization reconciliation ezetop topups">
+          <div class="p-5 md:p-6">
+            <div class="flex items-start gap-4">
+              <img src="https://placehold.co/320x200/12A87E/ffffff?text=Bill+Pay"
+                   alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" />
+              <div class="flex-1">
+                <div class="flex items-start justify-between gap-3">
+                  <h3 class="text-lg font-bold">Utility Payments & Mobile Top-ups (GCC)</h3>
+                  <span class="px-2 py-0.5 text-xs rounded-md bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Payments</span>
+                </div>
+                <p class="text-gray-600 text-sm mt-1"><span class="font-medium">UAE Exchange</span> • PO + BA • Multi-market</p>
+              </div>
+            </div>
+
+            <div class="mt-4 grid sm:grid-cols-2 gap-3">
+              <div class="rounded-xl p-4 bg-gradient-to-r from-emerald-50 to-white ring-1 ring-emerald-100">
+                <p class="text-xs font-semibold text-emerald-700 uppercase tracking-wide">What I shipped</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>Unified bill-pay hub across GCC utilities</li>
+                  <li>Cards via multiple PSPs; 3DS2 & tokenization</li>
+                  <li>Beneficiaries, reminders, receipts</li>
+                </ul>
+              </div>
+              <div class="rounded-xl p-4 bg-gradient-to-r from-blue-50 to-white ring-1 ring-blue-100">
+                <p class="text-xs font-semibold text-blue-700 uppercase tracking-wide">Measured</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>Adoption & repeat usage ↑</li>
+                  <li>Auth success ↑; failures ↓</li>
+                  <li>Time-to-receipt faster; clearer errors</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- UAE EXCHANGE — Hybrid Payment Mode (Split Tender) -->
+        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+                 data-company="UAE-Exchange" data-domain="Payments"
+                 data-keywords="hybrid split tender multi tender cash card multiple cards partial auth 3ds2 reconciliation receipts">
+          <div class="p-5 md:p-6">
+            <div class="flex items-start gap-4">
+              <img src="https://placehold.co/320x200/0D6EFD/ffffff?text=Split+Tender"
+                   alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" />
+              <div class="flex-1">
+                <div class="flex items-start justify-between gap-3">
+                  <h3 class="text-lg font-bold">Hybrid Payment Mode (Split Tender)</h3>
+                  <span class="px-2 py-0.5 text-xs rounded-md bg-blue-50 text-blue-700 ring-1 ring-blue-100">Payments</span>
+                </div>
+                <p class="text-gray-600 text-sm mt-1"><span class="font-medium">UAE Exchange</span> • PO + BA • POS + web/app</p>
+              </div>
+            </div>
+
+            <div class="mt-4 grid sm:grid-cols-2 gap-3">
+              <div class="rounded-xl p-4 bg-gradient-to-r from-indigo-50 to-white ring-1 ring-indigo-100">
+                <p class="text-xs font-semibold text-indigo-700 uppercase tracking-wide">What I shipped</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>One txn, multiple tenders: cash + card(s)</li>
+                  <li>Pre-auth each leg → capture all; atomic rollback</li>
+                  <li>3DS2, token vault, retry/backoff</li>
+                </ul>
+              </div>
+              <div class="rounded-xl p-4 bg-gradient-to-r from-blue-50 to-white ring-1 ring-blue-100">
+                <p class="text-xs font-semibold text-blue-700 uppercase tracking-wide">Measured</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>Drop-offs on high tickets ↓</li>
+                  <li>Settlement exceptions ↓</li>
+                  <li>Counter time faster</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- UAE EXCHANGE — FX Buyback -->
+        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+                 data-company="UAE-Exchange" data-domain="FX"
+                 data-keywords="buyback fx same rate guarantee 30 days voucher receipt qr policy eligibility caps teller pos web app refunds aml product owner business analyst">
+          <div class="p-5 md:p-6">
+            <div class="flex items-start gap-4">
+              <img src="https://placehold.co/320x200/0D6EFD/ffffff?text=FX+Buyback"
+                   alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" />
+              <div class="flex-1">
+                <div class="flex items-start justify-between gap-3">
+                  <h3 class="text-lg font-bold">FX Buyback — 30-Day Same-Rate Option</h3>
+                  <span class="px-2 py-0.5 text-xs rounded-md bg-blue-50 text-blue-700 ring-1 ring-blue-100">FX</span>
+                </div>
+                <p class="text-gray-600 text-sm mt-1"><span class="font-medium">UAE Exchange</span> • PO + BA • 5 months</p>
+              </div>
+            </div>
+
+            <div class="mt-4 grid sm:grid-cols-2 gap-3">
+              <div class="rounded-xl p-4 bg-gradient-to-r from-indigo-50 to-white ring-1 ring-indigo-100">
+                <p class="text-xs font-semibold text-indigo-700 uppercase tracking-wide">What I shipped</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>Optional add-on at purchase; nominal fee</li>
+                  <li>Digital voucher/QR on receipt for redemption</li>
+                  <li>Same-rate sell-back within 30 days</li>
+                </ul>
+              </div>
+              <div class="rounded-xl p-4 bg-gradient-to-r from-blue-50 to-white ring-1 ring-blue-100">
+                <p class="text-xs font-semibold text-blue-700 uppercase tracking-wide">Measured</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>Uptake & repeat visits ↑</li>
+                  <li>Incremental fee revenue ↑</li>
+                  <li>Rate-related disputes ↓</li>
+                  <li>Teller handling time ↓</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- UAE EXCHANGE — FX→FX -->
+        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+                 data-company="UAE-Exchange" data-domain="FX"
+                 data-keywords="fx to fx cross currency triangulation rate lock change local teller single fee reconciliation aml">
+          <div class="p-5 md:p-6">
+            <div class="flex items-start gap-4">
+              <img src="https://placehold.co/320x200/0D6EFD/ffffff?text=FX%E2%86%92FX"
+                   alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" />
+              <div class="flex-1">
+                <div class="flex items-start justify-between gap-3">
+                  <h3 class="text-lg font-bold">FX→FX (Cross-Currency) with Local Change</h3>
+                  <span class="px-2 py-0.5 text-xs rounded-md bg-blue-50 text-blue-700 ring-1 ring-blue-100">FX</span>
+                </div>
+                <p class="text-gray-600 text-sm mt-1"><span class="font-medium">UAE Exchange</span> • PO + BA • 4 months</p>
+              </div>
+            </div>
+
+            <div class="mt-4 grid sm:grid-cols-2 gap-3">
+              <div class="rounded-xl p-4 bg-gradient-to-r from-indigo-50 to-white ring-1 ring-indigo-100">
+                <p class="text-xs font-semibold text-indigo-700 uppercase tracking-wide">What I shipped</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>Single-ticket FX→FX; one fee, one receipt</li>
+                  <li>Triangulation via local base; rate-lock window</li>
+                  <li>Denomination helper for FX & change</li>
+                </ul>
+              </div>
+              <div class="rounded-xl p-4 bg-gradient-to-r from-blue-50 to-white ring-1 ring-blue-100">
+                <p class="text-xs font-semibold text-blue-700 uppercase tracking-wide">Measured</p>
+                <ul class="mt-2 text-sm text-gray-700 space-y-1.5 list-disc ps-5">
+                  <li>Counter time faster; one booking</li>
+                  <li>Short/excess till cases ↓</li>
+                  <li>Cleaner GL & reconciliation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+      <!-- END original project cards -->
+    </div>
+  </section>
+  <!-- /PROJECTS -->
+
+  <!-- APPROACH -->
+  <section id="approach" class="mt-8 md:mt-8 pt-8 md:pt-10 pb-16 md:pb-20 bg-white" aria-label="Approach">
+    <div class="container mx-auto px-6">
+      <header class="text-center mb-10">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">My Approach to Building Impactful Products</h2>
+        <p class="text-gray-600 mt-3">4 simple phases: Discover → Plan → Build → Learn.</p>
+      </header>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <!-- Sticky visual / hero -->
+        <div class="lg:sticky top-24 h-[64vh]">
+          <div class="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5">
+            <img id="approachHero"
+                 src="Images/Discovery.png"
+                 alt="Discovery — Find the real problem"
+                 class="w-full h-full object-cover transition duration-300"
+                 onerror="this.onerror=null;this.src='https://placehold.co/1200x800?text=Discovery';" />
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/40 to-transparent p-4">
+              <p id="approachHeroCaption" class="text-white text-sm/5 font-medium">
+                Discovery — Find the real problem
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="space-y-5" role="tablist" aria-label="Approach steps">
+          <!-- (Cards kept same)… -->
+          <!-- 1) Discovery -->
+          <div class="approach-card group rounded-2xl bg-white ring-1 ring-black/5 hover:ring-primary transition p-5 cursor-pointer"
+               role="tab" tabindex="0" aria-selected="true"
+               data-image="Images/Discovery.png"
+               data-alt="Discovery illustration"
+               data-caption="Discovery — Find the real problem">
+            <div class="flex items-start gap-4">
+              <img src="Images/Discovery.png"
+                   alt="Discovery thumbnail" class="w-14 h-14 rounded-xl object-cover ring-1 ring-black/5"
+                   onerror="this.onerror=null;this.src='https://placehold.co/192x192?text=D';" />
+              <div class="flex-1">
+                <h3 class="text-2xl font-bold">Discovery — Find the real problem</h3>
+                <p class="mt-1 text-gray-600">We talk to people and look at data to learn what hurts the most.</p>
+
+                <div class="mt-3">
+                  <button class="approach-more inline-flex items-center gap-2 text-primary font-semibold"
+                          aria-expanded="false" aria-controls="disc-details" type="button">
+                    <span>Details</span>
+                    <svg class="w-4 h-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                  </button>
+                  <div id="disc-details" class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300">
+                    <ul class="overflow-hidden mt-2 text-sm text-gray-700 list-disc ps-5">
+                      <li>Chat with 5–7 users (no scripts, just real stories).</li>
+                      <li>Map pains vs. must-haves; spot patterns.</li>
+                      <li>Write a one-line problem + the success number.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2) Strategy -->
+          <div class="approach-card group rounded-2xl bg-white ring-1 ring-black/5 hover:ring-primary transition p-5 cursor-pointer"
+               role="tab" tabindex="-1" aria-selected="false"
+               data-image="Images/strategy.png"
+               data-alt="Strategy illustration"
+               data-caption="Strategy — Pick the smartest path">
+            <div class="flex items-start gap-4">
+              <img src="Images/strategy.png"
+                   alt="Strategy thumbnail" class="w-14 h-14 rounded-xl object-cover ring-1 ring-black/5"
+                   onerror="this.onerror=null;this.src='https://placehold.co/192x192?text=S';" />
+              <div class="flex-1">
+                <h3 class="text-2xl font-bold">Strategy — Pick the smartest path</h3>
+                <p class="mt-1 text-gray-600">We choose the smallest, smartest bet that proves value fast.</p>
+
+                <div class="mt-3">
+                  <button class="approach-more inline-flex items-center gap-2 text-primary font-semibold"
+                          aria-expanded="false" aria-controls="strat-details" type="button">
+                    <span>Details</span>
+                    <svg class="w-4 h-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                  </button>
+                  <div id="strat-details" class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300">
+                    <ul class="overflow-hidden mt-2 text-sm text-gray-700 list-disc ps-5">
+                      <li>Score ideas by Impact × Effort.</li>
+                      <li>Slice a thin MVP that tests the riskiest bit.</li>
+                      <li>Roadmap that says “why” before “when”.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3) Execution -->
+          <div class="approach-card group rounded-2xl bg-white ring-1 ring-black/5 hover:ring-primary transition p-5 cursor-pointer"
+               role="tab" tabindex="-1" aria-selected="false"
+               data-image="Images/execute.png"
+               data-alt="Execution illustration"
+               data-caption="Execution — Build in small wins">
+            <div class="flex items-start gap-4">
+              <img src="Images/execute.png"
+                   alt="Execution thumbnail" class="w-14 h-14 rounded-xl object-cover ring-1 ring-black/5"
+                   onerror="this.onerror=null;this.src='https://placehold.co/192x192?text=E';" />
+              <div class="flex-1">
+                <h3 class="text-2xl font-bold">Execution — Build in small wins</h3>
+                <p class="mt-1 text-gray-600">Short sprints, tight feedback, no surprises.</p>
+
+                <div class="mt-3">
+                  <button class="approach-more inline-flex items-center gap-2 text-primary font-semibold"
+                          aria-expanded="false" aria-controls="exec-details" type="button">
+                    <span>Details</span>
+                    <svg class="w-4 h-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                  </button>
+                  <div id="exec-details" class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300">
+                    <ul class="overflow-hidden mt-2 text-sm text-gray-700 list-disc ps-5">
+                      <li>2-week sprints with clear “Done”.</li>
+                      <li>Design + Dev + QA demo every sprint.</li>
+                      <li>Ship behind flags; measure as we go.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4) Launch & Iterate -->
+          <div class="approach-card group rounded-2xl bg-white ring-1 ring-black/5 hover:ring-primary transition p-5 cursor-pointer"
+               role="tab" tabindex="-1" aria-selected="false"
+               data-image="Images/Launch-and-Iterate.png"
+               data-alt="Launch illustration"
+               data-caption="Launch &amp; Learn — Ship, watch, improve">
+            <div class="flex items-start gap-4">
+              <img src="Images/Launch-and-Iterate.png"
+                   alt="Launch thumbnail" class="w-14 h-14 rounded-xl object-cover ring-1 ring-black/5"
+                   onerror="this.onerror=null;this.src='https://placehold.co/192x192?text=L';" />
+              <div class="flex-1">
+                <h3 class="text-2xl font-bold">Launch &amp; Learn — Ship, watch, improve</h3>
+                <p class="mt-1 text-gray-600">Release to real users, learn from the numbers, and iterate.</p>
+
+                <div class="mt-3">
+                  <button class="approach-more inline-flex items-center gap-2 text-primary font-semibold"
+                          aria-expanded="false" aria-controls="launch-details" type="button">
+                    <span>Details</span>
+                    <svg class="w-4 h-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                  </button>
+                  <div id="launch-details" class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300">
+                    <ul class="overflow-hidden mt-2 text-sm text-gray-700 list-disc ps-5">
+                      <li>Gradual rollout (cohorts or regions).</li>
+                      <li>Watch activation, time-to-value, retention.</li>
+                      <li>Fix, polish, and scale what works.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /card -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/Approach-->
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="mt-4 md:mt-4 pt-0 md:pt-4 pb-16 md:pb-20 bg-white" aria-label="Certifications">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-8 md:mb-10">
+        <h2 class="text-4xl font-bold">My Certifications</h2>
+        <p class="text-gray-600 mt-2">Filter by issuer to skim faster.</p>
+      </div>
+    <!-- Filter chips -->
+      <div class="mb-6 mt-8 flex flex-wrap justify-center gap-2">
+        <button type="button" class="cert-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="all" aria-pressed="false">All</button>
+        <button type="button" class="cert-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="PMI" aria-pressed="true">PMI</button>
+        <button type="button" class="cert-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="SAFe" aria-pressed="true">SAFe</button>
+        <button type="button" class="cert-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="Coursera" aria-pressed="false">Coursera</button>
+      </div>
+    </div>
+      <!-- (Certification list) -->
+      <ul id="certList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <li data-issuer="PMI" class="rounded-xl p-5 bg-gradient-to-r from-blue-50 to-white ring-1 ring-blue-100 shadow">
+          <div class="flex items-start gap-3">
+            <div class="shrink-0 rounded-md bg-white ring-1 ring-blue-200 p-2">
+              <img src="Images/PMI-logo-SVG.svg" alt="PMI logo" title="PMI" class="h-5 w-5" loading="lazy" decoding="async">
+            </div>
+            <div>
+              <h3 class="font-semibold">Project Management Professional (PMP)</h3>
+              <p class="mt-1 text-sm text-gray-600 font-medium">PMI</p>
+              <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                <a href="https://www.credly.com/badges/69a688d1-972a-4db1-929c-ac1c271dcaf7/linked_in_profile" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                  Verify badge
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-blue-200 text-blue-700">ID: 3706089</span>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li data-issuer="SAFe" class="rounded-xl p-5 bg-gradient-to-r from-indigo-50 to-white ring-1 ring-indigo-100 shadow">
+          <div class="flex items-start gap-3">
+            <div class="shrink-0 rounded-md bg-white ring-1 ring-indigo-200 p-2">
+              <img src="Images/SAFe-POPM.png" alt="Scaled Agile logo" title="Scaled Agile" class="h-5 w-5" loading="lazy" decoding="async">
+            </div>
+            <div>
+              <h3 class="font-semibold">SAFe PO/PM</h3>
+              <p class="mt-1 text-sm text-gray-600 font-medium">SAFe / Scaled Agile</p>
+              <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                <a href="https://www.credly.com/badges/a89f32eb-0bdd-4e5f-b9f0-517c7397cc5d/linked_in_profile" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                  Verify on Credly
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-indigo-200 text-indigo-700">ID: 77446899-6000</span>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- (All remaining Coursera items kept as-is) -->
+        <li data-issuer="Coursera" class="rounded-xl p-5 bg-gradient-to-r from-emerald-50 to-white ring-1 ring-emerald-100 shadow">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-md bg-white ring-1 ring-emerald-200 p-2">
+            <img src="Images/Coursera-idzX4nGXpr-0.svg" alt="Coursera logo" title="Coursera" class="h-5 w-5" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <h3 class="font-semibold">Product Management Essentials</h3>
+            <p class="mt-1 text-sm text-gray-600 font-medium">Coursera</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <a href="https://coursera.org/verify/42UZAEED3EUE" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                Verify on Coursera
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-emerald-200 text-emerald-700">ID: 42UZAEED3EUE</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-issuer="Coursera" class="rounded-xl p-5 bg-gradient-to-r from-amber-50 to-white ring-1 ring-amber-100 shadow">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-md bg-white ring-1 ring-amber-200 p-2">
+            <img src="Images/Coursera-idzX4nGXpr-0.svg" alt="Coursera logo" class="h-5 w-5" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <h3 class="font-semibold">Agile Leadership Capstone</h3>
+            <p class="mt-1 text-sm text-gray-600 font-medium">Coursera</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <a href="https://www.coursera.org/account/accomplishments/certificate/S3VEJ03XS8W8" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                Verify on Coursera
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-amber-200 text-amber-700">ID: S3VEJ03XS8W8</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-issuer="Coursera" class="rounded-xl p-5 bg-gradient-to-r from-rose-50 to-white ring-1 ring-rose-100 shadow">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-md bg-white ring-1 ring-rose-200 p-2">
+            <img src="Images/Coursera-idzX4nGXpr-0.svg" alt="Coursera logo" class="h-5 w-5" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <h3 class="font-semibold">Effective Compliance Program</h3>
+            <p class="mt-1 text-sm text-gray-600 font-medium">Coursera</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <a href="https://www.coursera.org/account/accomplishments/certificate/35L2LJRS4BN0" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                Verify on Coursera
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-rose-200 text-rose-700">ID: 35L2LJRS4BN0</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-issuer="Coursera" class="rounded-xl p-5 bg-gradient-to-r from-violet-50 to-white ring-1 ring-violet-100 shadow">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-md bg-white ring-1 ring-violet-200 p-2">
+            <img src="Images/Coursera-idzX4nGXpr-0.svg" alt="Coursera logo" class="h-5 w-5" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <h3 class="font-semibold">Graphic Design</h3>
+            <p class="mt-1 text-sm text-gray-600 font-medium">Coursera</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <a href="https://www.coursera.org/account/accomplishments/certificate/KF26YA2UP8NN" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                Verify on Coursera
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-violet-200 text-violet-700">ID: KF26YA2UP8NN</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-issuer="Coursera" class="rounded-xl p-5 bg-gradient-to-r from-sky-50 to-white ring-1 ring-sky-100 shadow">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-md bg-white ring-1 ring-sky-200 p-2">
+            <img src="Images/Coursera-idzX4nGXpr-0.svg" alt="Coursera logo" class="h-5 w-5" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <h3 class="font-semibold">Foundations of User Experience (UX) Design</h3>
+            <p class="mt-1 text-sm text-gray-600 font-medium">Coursera</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <a href="https://www.coursera.org/account/accomplishments/certificate/DFDNJ69D7Z1U" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                Verify on Coursera
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-sky-200 text-sky-700">ID: DFDNJ69D7Z1U</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-issuer="Coursera" class="rounded-xl p-5 bg-gradient-to-r from-teal-50 to-white ring-1 ring-teal-100 shadow">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-md bg-white ring-1 ring-teal-200 p-2">
+            <img src="Images/Coursera-idzX4nGXpr-0.svg" alt="Coursera logo" class="h-5 w-5" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <h3 class="font-semibold">Software Processes and Agile Practices</h3>
+            <p class="mt-1 text-sm text-gray-600 font-medium">Coursera</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <a href="https://www.coursera.org/account/accomplishments/certificate/4LFKJ3YNLMUY" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                Verify on Coursera
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-teal-200 text-teal-700">ID: 4LFKJ3YNLMUY</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-issuer="Coursera" class="rounded-xl p-5 bg-gradient-to-r from-green-50 to-white ring-1 ring-green-100 shadow">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-md bg-white ring-1 ring-green-200 p-2">
+            <img src="Images/Coursera-idzX4nGXpr-0.svg" alt="Coursera logo" class="h-5 w-5" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <h3 class="font-semibold">Agile Planning for Software Products</h3>
+            <p class="mt-1 text-sm text-gray-600 font-medium">Coursera</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <a href="https://coursera.org/verify/83BWL32814LL" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                Verify on Coursera
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-green-200 text-green-700">ID: 83BWL32814LL</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-issuer="Coursera" class="rounded-xl p-5 bg-gradient-to-r from-cyan-50 to-white ring-1 ring-cyan-100 shadow">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-md bg-white ring-1 ring-cyan-200 p-2">
+            <img src="Images/Coursera-idzX4nGXpr-0.svg" alt="Coursera logo" class="h-5 w-5" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <h3 class="font-semibold">Active Listening: Enhancing Communication Skills</h3>
+            <p class="mt-1 text-sm text-gray-600 font-medium">Coursera</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <a href="https://www.coursera.org/account/accomplishments/certificate/K1NPC8QIPQK0" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                Verify on Coursera
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-cyan-200 text-cyan-700">ID: K1NPC8QIPQK0</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-issuer="Coursera" class="rounded-xl p-5 bg-gradient-to-r from-fuchsia-50 to-white ring-1 ring-fuchsia-100 shadow">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-md bg-white ring-1 ring-fuchsia-200 p-2">
+            <img src="Images/Coursera-idzX4nGXpr-0.svg" alt="Coursera logo" class="h-5 w-5" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <h3 class="font-semibold">Client Needs and Software Requirements</h3>
+            <p class="mt-1 text-sm text-gray-600 font-medium">Coursera</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <a href="https://www.coursera.org/account/accomplishments/certificate/YRXSQ33YWZ7S" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                Verify on Coursera
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-fuchsia-200 text-fuchsia-700">ID: YRXSQ33YWZ7S</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-issuer="Coursera" class="rounded-xl p-5 bg-gradient-to-r from-orange-50 to-white ring-1 ring-orange-100 shadow">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-md bg-white ring-1 ring-orange-200 p-2">
+            <img src="Images/Coursera-idzX4nGXpr-0.svg" alt="Coursera logo" class="h-5 w-5" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <h3 class="font-semibold">Business Writing</h3>
+            <p class="mt-1 text-sm text-gray-600 font-medium">Coursera</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <a href="https://www.coursera.org/account/accomplishments/certificate/21KQZV1GCJTT" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                Verify on Coursera
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-orange-200 text-orange-700">ID: 21KQZV1GCJTT</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-issuer="Coursera" class="rounded-xl p-5 bg-gradient-to-r from-purple-50 to-white ring-1 ring-purple-100 shadow">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-md bg-white ring-1 ring-purple-200 p-2">
+            <img src="Images/Coursera-idzX4nGXpr-0.svg" alt="Coursera logo" class="h-5 w-5" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <h3 class="font-semibold">Successful Presentation</h3>
+            <p class="mt-1 text-sm text-gray-600 font-medium">Coursera</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <a href="https://www.coursera.org/account/accomplishments/certificate/58KOTNFPQ0ZW" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                Verify on Coursera
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-purple-200 text-purple-700">ID: 58KOTNFPQ0ZW</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-issuer="Coursera" class="rounded-xl p-5 bg-gradient-to-r from-pink-50 to-white ring-1 ring-pink-100 shadow">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-md bg-white ring-1 ring-pink-200 p-2">
+            <img src="Images/Coursera-idzX4nGXpr-0.svg" alt="Coursera logo" class="h-5 w-5" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <h3 class="font-semibold">Review and Metrics for Software Improvements</h3>
+            <p class="mt-1 text-sm text-gray-600 font-medium">Coursera</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <a href="https://www.coursera.org/account/accomplishments/certificate/340W6Q4BLUFX" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                Verify on Coursera
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-pink-200 text-pink-700">ID: 340W6Q4BLUFX</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li data-issuer="Coursera" class="rounded-xl p-5 bg-gradient-to-r from-slate-50 to-white ring-1 ring-slate-100 shadow">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-md bg-white ring-1 ring-slate-200 p-2">
+            <img src="Images/Coursera-idzX4nGXpr-0.svg" alt="Coursera logo" class="h-5 w-5" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <h3 class="font-semibold">Introduction to Software Product Management</h3>
+            <p class="mt-1 text-sm text-gray-600 font-medium">Coursera</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+              <a href="https://www.coursera.org/account/accomplishments/certificate/24HRJAQ407W7" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white ring-1 ring-gray-200 text-gray-700 hover:text-primary">
+                Verify on Coursera
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <span class="px-2 py-0.5 rounded-full bg-white ring-1 ring-slate-200 text-slate-700">ID: 24HRJAQ407W7</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20" aria-label="Contact">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold">Let's Connect</h2>
+      <p class="text-gray-600 mt-4 max-w-xl mx-auto text-lg">Open to new product challenges and good conversations.</p>
+
+      <div class="mt-10 flex flex-col md:flex-row justify-center items-center gap-6">
+        <a href="mailto:kapoor.vishal1102@gmail.com" class="flex items-center gap-3 text-lg text-gray-700 hover:text-primary">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span class="font-semibold">kapoor.vishal1102@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/vishalkumar1106/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-lg text-gray-700 hover:text-primary">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM8 19H5V8h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764S9 3.994 9 4.968s-.784 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
+          <span class="font-semibold">LinkedIn</span>
+        </a>
+  <!-- Removed phone number; added Book link -->
+        <a href="#booking" class="flex items-center gap-3 text-lg text-gray-700 hover:text-primary">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2v-6H3v6a2 2 0 002 2z"/></svg>
+          <span class="font-semibold">Meeting Request</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- /CONTACT -->
+
+  <!-- BOOKING (moved here, after Contact) -->
+  <section id="booking" class="pt-10 md:pt-12 pb-16 md:pb-20 bg-white" aria-label="Meeting Request">
+  <div class="container mx-auto px-6 text-center max-w-2xl">
+    <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Meeting Request</h2>
+    <p class="mt-3 text-gray-600">
+      Pick a time that works for you. I’m on Gulf Standard Time (UTC+4), but Calendly auto-detects your timezone.
+    </p>
+
+    <button type="button" data-open-calendly
+            class="mt-6 inline-flex items-center gap-2 bg-primary text-white font-semibold py-3 px-5 rounded-xl shadow-glow hover:translate-y-[-2px] transition">
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2v-6H3v6a2 2 0 002 2z"/></svg>
+      Book 30-min chat
+    </button>
+
+    <!-- Noscript / hard fallback -->
+    <p class="mt-3 text-sm text-gray-500">
+      Having trouble? <a class="text-primary underline" target="_blank" rel="noopener" href="https://calendly.com/kapoor-vishal1102/30min?hide_gdpr_banner=1&text_color=0f172a&primary_color=16A34A&background_color=ffffff&timezone=Asia%2FDubai">Open Calendly</a>.
+    </p>
+  </div>
+</section>
+<!--Booking-->
+</main>
+
+<footer class="bg-dark text-white py-10">
+  <div class="container mx-auto px-6 text-center">
+    <p class="text-white/60">© 2025 Vishal Kumar. All rights reserved.</p>
+  </div>
+
+  <button id="backToTop" class="fixed bottom-6 right-6 rounded-full bg-white text-dark ring-1 ring-black/10 shadow px-3 py-3 hover:shadow-lg hidden" aria-label="Back to top">
+    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg>
+  </button>
+</footer>
+
+<!-- Scripts (unchanged) -->
+<script>
+(() => {
+  if (window.__vkInit) return; window.__vkInit = true;
+
+  const $  = (s, r=document) => r.querySelector(s);
+  const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+  // --- Header height var
+  const headerEl = document.querySelector('header');
+  const setHeaderH = () => {
+    const h = headerEl?.offsetHeight || 64;
+    document.documentElement.style.setProperty('--header-h', h + 'px');
+  };
+  addEventListener('resize', setHeaderH);
+  if ('ResizeObserver' in window && headerEl) new ResizeObserver(setHeaderH).observe(headerEl);
+  setHeaderH();
+
+  // --- Mobile menu
+  $('#menuBtn')?.addEventListener('click', () => $('#mobileMenu')?.classList.toggle('hidden'));
+
+  // --- Scroll progress + back to top
+  const progress = $('#progress');
+  const backBtn  = $('#backToTop');
+  const onScroll = () => {
+    const h = document.documentElement;
+    const w = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    if (progress) progress.style.width = w + '%';
+    backBtn?.classList.toggle('hidden', scrollY < 500);
+  };
+  addEventListener('scroll', onScroll); onScroll();
+  backBtn?.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // --- Active nav link
+  const sections = $$('main section, section[id]');
+  const navLinks = $$('header a[href^="#"]');
+  const setActive = (id) => {
+    navLinks.forEach(l => { l.classList.remove('nav-active'); l.removeAttribute('aria-current'); });
+    const a = document.querySelector(`header a[href="#${id}"]`);
+    a?.classList.add('nav-active'); a?.setAttribute('aria-current', 'true');
+  };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e => e.isIntersecting && setActive(e.target.id));
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    sections.forEach(s => s.id && io.observe(s));
+  }
+
+  // --- Count-up on visible
+  const animateNumber = (el, to, ms=1200) => {
+    const start = performance.now(), from = 0;
+    const step  = (t) => {
+      const p = Math.min(1, (t - start) / ms);
+      const val = Math.round(from + (to - from) * (1 - Math.cos(p * Math.PI)) / 2);
+      el.textContent = val + '%'; if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  $$('#experience [data-count]').forEach(elm => {
+    const end = Number(elm.getAttribute('data-count') || '0');
+    const once = new IntersectionObserver((ents) => {
+      ents.forEach(e => { if (e.isIntersecting) { animateNumber(elm, end); once.disconnect(); }});
+    }, { rootMargin: '0px 0px -15% 0px' });
+    once.observe(elm);
+  });
+
+  // --- Experience filters
+  const xpBtns  = $$('.xp-filter');
+  const xpItems = $$('#experience [data-company]');
+  const applyXp = () => {
+    const active = xpBtns.filter(b => b.getAttribute('aria-pressed') === 'true').map(b => b.dataset.filter);
+    xpItems.forEach(li => {
+      const show = active.includes('all') || active.includes(li.dataset.company);
+      li.classList.toggle('hidden', !show);
+    });
+  };
+  xpBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const type = btn.dataset.filter;
+      if (type === 'all') {
+        xpBtns.forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      } else {
+        const now = btn.getAttribute('aria-pressed') === 'true';
+        btn.setAttribute('aria-pressed', String(!now));
+        const allBtn = xpBtns.find(b => b.dataset.filter === 'all');
+        allBtn?.setAttribute('aria-pressed', 'false');
+        const any = xpBtns.some(b => b.dataset.filter !== 'all' && b.getAttribute('aria-pressed') === 'true');
+        if (!any && allBtn) allBtn.setAttribute('aria-pressed', 'true');
+      }
+      applyXp();
+    });
+  });
+  applyXp();
+  // Expand/Collapse all
+  $('#xpToggleDetails')?.addEventListener('click', (e) => {
+    const t = e.currentTarget;
+    const open = t.getAttribute('aria-expanded') === 'true';
+    t.setAttribute('aria-expanded', String(!open));
+    t.textContent = open ? 'Expand All' : 'Collapse All';
+    document.querySelectorAll('#experience details').forEach(d => d.open = !open);
+  });
+
+  // --- Certifications filters
+  const cBtns = $$('.cert-filter');
+  const cItems = $$('#certList > li[data-issuer]');
+  const btnAll = cBtns.find(b => b.dataset.filter === 'all');
+  const originals = cBtns.filter(b => b.dataset.filter !== 'all' && b.getAttribute('aria-pressed') === 'true').map(b => b.dataset.filter);
+  const setPressed = (b,on) => b && b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  const restore = () => { setPressed(btnAll,false); cBtns.filter(b=>b.dataset.filter!=='all').forEach(b=>setPressed(b, originals.includes(b.dataset.filter))); applyCerts(); };
+  const applyCerts = () => {
+    if (btnAll && btnAll.getAttribute('aria-pressed')==='true') { cItems.forEach(li=>li.classList.remove('hidden')); return; }
+    const active = cBtns.filter(b=>b.dataset.filter!=='all' && b.getAttribute('aria-pressed')==='true').map(b=>b.dataset.filter);
+    if (!active.length) { restore(); return; }
+    cItems.forEach(li => li.classList.toggle('hidden', !active.includes(li.dataset.issuer)));
+  };
+  cBtns.forEach(b => {
+    b.addEventListener('click', () => {
+      const type = b.dataset.filter;
+      if (type === 'all') { if (btnAll.getAttribute('aria-pressed')!=='true') { setPressed(btnAll,true); cBtns.filter(x=>x!==btnAll).forEach(x=>setPressed(x,false)); } else { restore(); return; } }
+      else {
+        setPressed(btnAll,false);
+        setPressed(b, b.getAttribute('aria-pressed')!=='true');
+      }
+      applyCerts();
+    });
+  });
+  applyCerts();
+
+  // --- Projects: filters + search + galleries + "more"
+  {
+    const root = document.getElementById('projects');
+    if (root) {
+      const chips  = Array.from(root.querySelectorAll('.proj-filter'));
+      const search = root.querySelector('#projSearch');
+      const cards  = Array.from(root.querySelectorAll('.proj-card'));
+      const norm = (s) => (s || '').toString().toLowerCase().replace(/[\s\/,&()\-]+/g, ' ').trim();
+      const domainSynonyms = {
+        fintech: ['fintech','payments','fx','remittance','pricing','card'],
+        ew: ['ew','defense','electronic warfare'],
+        digitaltwin: ['digital twin','digitaltwin','dt'],
+        payments: ['payments','card','utility','bill','top ups','topups','split tender','3ds2'],
+        fx: ['fx','forex','foreign exchange','cross currency','fx to fx']
+      };
+      const isPressed = (b) => b.getAttribute('aria-pressed') === 'true';
+      const setP = (b,on) => b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      let active = new Set(['all']);
+      const apply = () => {
+        const q = norm(search?.value || '');
+        const sels = Array.from(active);
+        const company = sels.filter(f => f.startsWith('company:')).map(f => norm(f.split(':')[1]));
+        const domain  = sels.filter(f => f.startsWith('domain:')).map(f => norm(f.split(':')[1]));
+        cards.forEach(card => {
+          const c = norm(card.dataset.company), d = norm(card.dataset.domain), k = norm(card.dataset.keywords);
+          let passCompany = !company.length || company.some(tok => c.includes(tok));
+          let passDomain = !domain.length || domain.some(tok => {
+            const syns = domainSynonyms[tok] || [tok];
+            return syns.some(s => d.includes(s) || k.includes(s));
+          });
+          let passSearch = !q || norm(card.textContent + ' ' + (card.dataset.keywords||'') + ' ' + c + ' ' + d).includes(q);
+          card.classList.toggle('hidden', !(passCompany && passDomain && passSearch));
+        });
+      };
+      chips.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const val = btn.dataset.filter;
+          if (val === 'all') {
+            active = new Set(['all']); chips.forEach(b => setP(b, b===btn));
+          } else {
+            const on = !isPressed(btn); setP(btn, on);
+            const allBtn = chips.find(b => b.dataset.filter === 'all'); allBtn && setP(allBtn, false);
+            active.delete('all'); active = new Set(chips.filter(isPressed).map(b => b.dataset.filter));
+            if (!active.size) { active = new Set(['all']); allBtn && setP(allBtn,true); }
+          }
+          apply();
+        });
+      });
+      search?.addEventListener('input', apply);
+      root.querySelectorAll('.proj-gallery').forEach(scroller => {
+        scroller.addEventListener('keydown', (e) => {
+          const step = scroller.clientWidth * 0.9;
+          if (e.key === 'ArrowRight') { e.preventDefault(); scroller.scrollBy({ left: step, behavior: 'smooth' }); }
+          if (e.key === 'ArrowLeft')  { e.preventDefault(); scroller.scrollBy({ left:-step, behavior: 'smooth' }); }
+        });
+      });
+      root.querySelectorAll('[data-more]').forEach(btn => {
+        const sel = btn.getAttribute('data-more'); const panel = document.querySelector(sel);
+        btn.addEventListener('click', () => {
+          const open = !panel.classList.contains('hidden');
+          panel.classList.toggle('hidden', open);
+          btn.textContent = open ? 'More details' : 'Hide details';
+        });
+      });
+      chips.forEach(b => setP(b, b.dataset.filter === 'all')); apply();
+    }
+  }
+
+  // --- Approach hero preview + drawers
+  {
+    const approachRoot = document.getElementById('approach');
+    if (approachRoot) {
+      const heroImg = document.getElementById('approachHero');
+      const heroCap = document.getElementById('approachHeroCaption');
+      const cards   = Array.from(approachRoot.querySelectorAll('.approach-card'));
+      cards.forEach(c => { const src = c.dataset.image; if (src) { const i = new Image(); i.src = src; } });
+      const applyToHero = (card) => {
+        if (!card) return;
+        const { image, alt, caption } = card.dataset;
+        if (image && heroImg && heroImg.src !== image) heroImg.src = image;
+        if (alt && heroImg) heroImg.alt = alt;
+        if (caption && heroCap) heroCap.textContent = caption;
+      };
+      const clearSel = () => cards.forEach(c => c.setAttribute('aria-selected','false'));
+      let current = cards.find(c => c.getAttribute('aria-selected') === 'true') || cards[0];
+      applyToHero(current);
+      const lock    = (card) => { clearSel(); card.setAttribute('aria-selected','true'); current = card; applyToHero(card); };
+      const preview = (card) => applyToHero(card);
+      const revert  = () => applyToHero(current);
+      const supportsHover = matchMedia('(hover: hover) and (pointer: fine)').matches;
+      cards.forEach(card => {
+        card.addEventListener('click', () => lock(card));
+        card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); lock(card); }});
+        card.addEventListener('focus', () => preview(card));
+        card.addEventListener('blur',  revert);
+        if (supportsHover) { card.addEventListener('mouseenter', () => preview(card)); card.addEventListener('mouseleave', revert); }
+      });
+      approachRoot.querySelectorAll('.approach-more').forEach(btn => {
+        const id = btn.getAttribute('aria-controls'); const panel = id ? document.getElementById(id) : null;
+        if (!panel) return;
+        const setOpen = (open) => { btn.setAttribute('aria-expanded', String(open)); panel.style.gridTemplateRows = open ? '1fr' : '0fr'; };
+        setOpen(false);
+        btn.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+      });
+    }
+  }
+
+  // --- Calendly: lazy loader + single handler for all triggers
+  (function setupCalendly(){
+    const CAL_URL = 'https://calendly.com/kapoor-vishal1102/30min?hide_gdpr_banner=1&text_color=0f172a&primary_color=16A34A&background_color=ffffff&timezone=Asia%2FDubai';
+    let loading = null;
+
+    function ensureCalendly(){
+      if (window.Calendly) return Promise.resolve();
+      if (loading) return loading;
+      loading = new Promise((resolve) => {
+        // load CSS
+        if (!document.querySelector('link[data-calendly-css]')) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet'; link.href = 'https://assets.calendly.com/assets/external/widget.css';
+          link.setAttribute('data-calendly-css',''); document.head.appendChild(link);
+        }
+        // load JS
+        const s = document.createElement('script');
+        s.src = 'https://assets.calendly.com/assets/external/widget.js';
+        s.onload = () => resolve(); document.head.appendChild(s);
+      });
+      return loading;
+    }
+
+    // Upgrade any anchor to #booking into a popup trigger
+    document.querySelectorAll('a[href="#booking"]').forEach(a => a.setAttribute('data-open-calendly',''));
+
+    // Delegate clicks
+    document.addEventListener('click', (ev) => {
+      const el = ev.target.closest('[data-open-calendly],[data-calendly-popup]');
+      if (!el) return;
+      ev.preventDefault();
+      // Fail open: if Calendly doesn't load quickly, open scheduling page in a new tab
+      const failover = setTimeout(() => { window.open(CAL_URL, '_blank', 'noopener'); }, 4000);
+      ensureCalendly().then(() => {
+        clearTimeout(failover);
+        if (window.Calendly && typeof Calendly.initPopupWidget === 'function') {
+          Calendly.initPopupWidget({ url: CAL_URL });
+        } else {
+          window.open(CAL_URL, '_blank', 'noopener');
+        }
+      });
+    });
+  })();
+})();
+</script>
+</body>
+</html>
