@@ -40,6 +40,26 @@
   body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
 
   .nav-active { color: var(--brand); font-weight: 700; }
+  #brandName,
+  #brandName:hover,
+  #brandName:focus,
+  #brandName:active,
+  #brandName:visited,
+  #brandName:focus-visible,
+  #brandName.nav-active {
+    color: var(--brand) !important;
+  }
+  @media (prefers-color-scheme: dark) {
+    #brandName { color: var(--brand) !important; }
+  }
+
+  /* Keep active nav links green */
+  .nav-link.nav-active { color: var(--brand) !important; font-weight: 700; }
+
+  /* Mobile menu link colors */
+  #mobileMenu a { color: #334155; }
+  #mobileMenu a:hover,
+  #mobileMenu a:focus { color: var(--brand); }
   .blob { filter: blur(40px); opacity: .55; }
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -64,6 +84,9 @@
   }
 
   :root { --header-h: 64px; }
+  @media (max-width: 480px) {
+    :root { --header-h: 72px; }
+  }
   body { padding-top: var(--header-h); }
   [id] { scroll-margin-top: calc(var(--header-h) + 12px); }
 </style>
@@ -76,7 +99,7 @@
   <!-- Header -->
   <header class="supports-backdrop-blur:bg-white/70 bg-white/90 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
     <nav class="container mx-auto px-6 py-4 flex justify-between items-center" aria-label="Primary">
-      <a href="#home" class="text-xl font-extrabold tracking-tight">Vishal Kumar</a>
+      <a id="brandName" href="#home" class="text-xl font-extrabold tracking-tight text-primary">Vishal Kumar</a>
 
       <button id="menuBtn" class="md:hidden inline-flex items-center gap-2 text-gray-700 hover:text-primary" aria-label="Open menu">
         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -305,7 +328,6 @@
         <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Experience</h2>
         <p class="text-gray-600 mt-3">Impact stories across FinTech, Payments and Geospatial AI.</p>
         <br/>
-        <!-- Experience filters -->
         <!-- Experience filters -->
       <div class="sticky top-[calc(var(--header-h)+8px)] z-40 bg-white/80 backdrop-blur supports-backdrop-blur:bg-white/70 -mx-6 px-6 py-2 mb-6 border-b border-gray-200/60">
         <div class="flex flex-wrap justify-center items-center gap-2">
@@ -612,7 +634,6 @@
                 data-filter="domain:Payments" aria-pressed="false">Payments</button>
         <button type="button" class="proj-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 hover:text-primary"
                 data-filter="domain:FX" aria-pressed="false">FX</button>
-
         <label class="sr-only" for="projSearch">Search projects</label>
         <input id="projSearch" type="search" placeholder="Search by feature, stack, etc."
                class="w-full sm:w-72 px-3 py-2 text-sm rounded-lg ring-1 ring-gray-200 focus:ring-2 focus:ring-primary outline-none" />
