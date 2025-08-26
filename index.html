@@ -56,6 +56,29 @@
   /* Keep active nav links green */
   .nav-link.nav-active { color: var(--brand) !important; font-weight: 700; }
 
+  /* Unified hero chip style for Option 1 (Indigo + Amber) */
+  .chip-hero1 {
+    display:inline-flex;align-items:center;gap:.375rem;
+    padding:.375rem .75rem;
+    font-size:.875rem;line-height:1.25rem;
+    border-radius:9999px;
+    background:#E0E7FF; /* indigo-100 */
+    color:#3730A3; /* indigo-800 */
+    border:1px solid #C7D2FE; /* indigo-200 */
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .chip-hero {
+    display:inline-flex;align-items:center;gap:.375rem;
+    padding:.375rem .75rem;
+    font-size:.875rem;line-height:1.25rem;
+    border-radius:9999px;
+    background:#FEF3C7; /* amber-100 */
+    color:#92400E; /* amber-800 */
+    border:1px solid #FDE68A; /* amber-200 */
+    white-space:nowrap;
+  }
+
   /* Mobile menu link colors */
   #mobileMenu a { color: #334155; }
   #mobileMenu a:hover,
@@ -71,13 +94,17 @@
   /* unified chip styles (pressed = brand) */
   .cert-filter[aria-pressed="false"],
   .xp-filter[aria-pressed="false"],
-  .proj-filter[aria-pressed="false"]{
+  .proj-filter[aria-pressed="false"],
+  .skill-filter[aria-pressed="false"],
+  .skill-filter2[aria-pressed="false"]{
     background-color:#fff; color:#334155;
     box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
   }
   .cert-filter[aria-pressed="true"],
   .xp-filter[aria-pressed="true"],
-  .proj-filter[aria-pressed="true"]{
+  .proj-filter[aria-pressed="true"],
+  .skill-filter[aria-pressed="true"],
+  .skill-filter2[aria-pressed="true"]{
     background-color: rgb(22 163 74 / 0.12);
     color: var(--brand);
     box-shadow: inset 0 0 0 1px rgb(22 163 74 / 0.35);
@@ -91,6 +118,40 @@
   [id] { scroll-margin-top: calc(var(--header-h) + 12px); }
 </style>
 <!--/Brand & chip CSS-->
+<style>
+  /* Section filter bar utility */
+  .section-filter-bar {
+    border-bottom: 1px solid #e5e7eb; /* Tailwind gray-200 */
+    padding-bottom: 0.5rem; /* give some space below chips */
+    margin-bottom: 1rem; /* space before content starts */
+  }
+
+  /* Consistent vertical rhythm across sections */
+  .section { padding-top: 1.5rem; padding-bottom: 2rem; }
+  @media (min-width: 768px){ .section { padding-top: 2rem; padding-bottom: 3rem; } }
+  /* Compact variant for back-to-back sections */
+  .section-compact { padding-top: 1rem !important; }
+
+  /* Normalize header spacing in sections */
+  #skills header.text-center,
+  #experience header.text-center,
+  #projects header.text-center,
+  #approach header.text-center,
+  #certifications header.text-center { margin-bottom: 1.25rem !important; }
+  @media (min-width:768px){
+    #skills header.text-center,
+    #experience header.text-center,
+    #projects header.text-center,
+    #approach header.text-center,
+    #certifications header.text-center { margin-bottom: 1.5rem !important; }
+  }
+  /* Tighten subhead/lead spacing just a bit */
+  #skills header p,
+  #experience header p,
+  #projects header p,
+  #approach header p,
+  #certifications header p { margin-top: 0.5rem !important; }
+</style>
 </head>
 <body class="bg-light text-dark antialiased selection:bg-primary/20">
   <!-- Scroll progress bar -->
@@ -109,8 +170,9 @@
         <li><a href="#home" class="nav-link text-gray-600 hover:text-primary transition">Home</a></li>
         <li><a href="#about" class="nav-link text-gray-600 hover:text-primary transition">About</a></li>
         <li><a href="#experience" class="nav-link text-gray-600 hover:text-primary transition">Experience</a></li>
-        <li><a href="#approach" class="nav-link text-gray-600 hover:text-primary transition">Approach</a></li>
         <li><a href="#projects" class="nav-link text-gray-600 hover:text-primary transition">Projects</a></li>
+        <li><a href="#skills" class="nav-link text-gray-600 hover:text-primary transition">Skills</a></li>
+        <li><a href="#approach" class="nav-link text-gray-600 hover:text-primary transition">Approach</a></li>
         <li><a href="#certifications" class="nav-link text-gray-600 hover:text-primary transition">My Certifications</a></li>
         <li><a href="#contact" class="nav-link text-gray-600 hover:text-primary transition">Contact</a></li>
         <li><a href="#booking" class="nav-link text-gray-600 hover:text-primary transition">Meeting Request</a></li>
@@ -123,8 +185,9 @@
         <li><a class="block py-2" href="#home">Home</a></li>
         <li><a class="block py-2" href="#about">About</a></li>
         <li><a class="block py-2" href="#experience">Experience</a></li>
-        <li><a class="block py-2" href="#approach">Approach</a></li>
         <li><a class="block py-2" href="#projects">Projects</a></li>
+        <li><a class="block py-2" href="#skills">Skills</a></li>
+        <li><a class="block py-2" href="#approach">Approach</a></li>
         <li><a class="block py-2" href="#certifications">My Certifications</a></li>
         <li><a class="block py-2" href="#contact">Contact</a></li>
         <li><a class="block py-2" href="#booking">Meeting Request</a></li>
@@ -138,7 +201,7 @@
   <div class="container mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center pt-10 md:pt-16 pb-8 md:pb-14">
     <!-- Left: copy -->
     <div class="max-w-2xl">
-      <p class="text-sm font-semibold tracking-wide text-slate-500 uppercase">Hi, I’m Vishal Kumar</p>
+      <p class="text-4xl font-semibold tracking-wide text-blue-900 uppercase">Hi, I’m Vishal Kumar</p>
       <h1 class="mt-3 text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-slate-900">
         Senior Product Owner | AI • Defense • FinTech
       </h1>
@@ -148,25 +211,23 @@
         I align stakeholders, ship fast in small slices, and track success through activation, time-to-value, and retention.
       </p>
       <div class="mt-5 flex flex-wrap items-center gap-2">
-        <span class="px-4 py-2 text-sm font-semibold uppercase tracking-wide text-emerald-800 bg-emerald-50 ring-1 ring-emerald-300 rounded-full">Key Skills</span>
-        <span class="px-3 py-1.5 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Product Strategy</span>
-        <span class="px-3 py-1.5 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Regulatory/Compliance</span>
-        <span class="px-3 py-1.5 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Team Leadership</span>
+        <span class="chip-hero1">Key Skills</span>
+        <span class="chip-hero">Product Strategy</span>
+        <span class="chip-hero">Regulatory/Compliance</span>
+        <span class="chip-hero">Team Leadership</span>
       </div>
       <div class="mt-5 flex flex-wrap items-center gap-2" aria-label="Sectors I work in">
-        <span class="px-4 py-2 text-sm font-semibold uppercase tracking-wide text-emerald-800 bg-emerald-50 ring-1 ring-emerald-300 rounded-full">Sectors I worked in</span>
-        <span class="px-4 py-2 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Defense/EW</span>
-        <span class="px-4 py-2 text-sm rounded-full bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100">AI (GeoAI & Digital Twin)</span>
-        <span class="px-4 py-2 text-sm rounded-full bg-cyan-50 text-cyan-700 ring-1 ring-cyan-100">FinTech</span>
+        <span class="chip-hero1">Sectors I worked in</span>
+        <span class="chip-hero">Defense/EW</span>
+        <span class="chip-hero">AI (GeoAI &amp; Digital Twin)</span>
+        <span class="chip-hero">FinTech</span>
       </div>
     <div class="mt-6 flex flex-wrap items-center gap-2" aria-label="How I work">
-    <span class="px-4 py-2 text-sm font-semibold uppercase tracking-wide text-emerald-800 bg-emerald-50 ring-1 ring-emerald-300 rounded-full">
-      How I work
-    </span>
-    <span class="px-3 py-1.5 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Outcome-first discovery</span>
-    <span class="px-3 py-1.5 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Predictable delivery</span>
-    <span class="px-3 py-1.5 text-sm rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">Measured impact</span>
-  </div>
+      <span class="chip-hero1">How I work</span>
+      <span class="chip-hero">Outcome-first discovery</span>
+      <span class="chip-hero">Predictable delivery</span>
+      <span class="chip-hero">Measured impact</span>
+    </div>
 
       <div class="mt-7 flex flex-wrap items-center gap-3">
       <!-- Primary -->
@@ -226,7 +287,7 @@
 </section>
 <!-- /HERO -->
 <!-- ABOUT -->
-<section id="about" class="pt-0 md:pt-8 pb-14 bg-white" aria-label="About">
+<section id="about" class="section bg-white" aria-label="About">
   <div class="container mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-10 items-start">
     <!-- Left: story + strengths -->
     <div class="md:col-span-2">
@@ -320,17 +381,16 @@
   </div>
 </section>
 <!--/ABOUT-->
-
   <!-- EXPERIENCE -->
-    <section id="experience" class="scroll-mt-24 pt-10 md:pt-14 pb-10 md:pb-12 bg-white relative">
+    <section id="experience" class="scroll-mt-24 section bg-white relative">
     <div class="container mx-auto px-4 sm:px-6">
       <header class="text-center mb-8 md:mb-10">
         <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Experience</h2>
         <p class="text-gray-600 mt-3">Impact stories across FinTech, Payments and Geospatial AI.</p>
         <br/>
         <!-- Experience filters -->
-      <div class="sticky top-[calc(var(--header-h)+8px)] z-40 bg-white/80 backdrop-blur supports-backdrop-blur:bg-white/70 -mx-6 px-6 py-2 mb-6 border-b border-gray-200/60">
-        <div class="flex gap-2 items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap -mx-4 px-4 md:flex-wrap md:overflow-visible">
+      <div class="sticky top-[calc(var(--header-h)+8px)] z-40 bg-white/80 backdrop-blur supports-backdrop-blur:bg-white/70 -mx-6 px-6 py-2 mb-6">
+        <div class="flex gap-2 items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap -mx-4 px-4 md:flex-wrap md:overflow-visible section-filter-bar">
           <button type="button" class="xp-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="all" aria-pressed="true">All</button>
           <button type="button" class="xp-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="Space42" aria-pressed="false">Space42</button>
           <button type="button" class="xp-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="UAE-Exchange" aria-pressed="false">UAE-Exchange</button>
@@ -603,9 +663,8 @@
             </article>
           </li>
         </ol>
-
         <!-- CV button -->
-        <div class="mt-8">
+        <div class="mt-8 mb-2">
           <a href="assets/Vishal-Kumar-CV.pdf" class="inline-flex items-center gap-2 border px-4 py-2 rounded-lg hover:shadow">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14m0 0-6-6m6 6 6-6"/></svg>
             Download full CV
@@ -614,16 +673,17 @@
       </div>
     </div>
   </section>
+  <!--/CV button-->
   <!-- /EXPERIENCE -->
   
   <!-- PROJECTS -->
-  <section id="projects" class="pt-10 md:pt-12 pb-16 md:pb-20 bg-white" aria-label="Projects">
+  <section id="projects" class="bg-white pt-4 md:pt-6 pb-16 md:pb-20" aria-label="Projects">
     <div class="container mx-auto px-4 sm:px-6">
       <header class="text-center mb-8">
         <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">My Work &amp; Case Studies</h2>
         <p class="text-gray-600 mt-2">Key outcomes and what I built — no clicks required.</p>
       </header>
-      <div class="mb-6 flex gap-2 items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap -mx-4 px-4 md:flex-wrap md:overflow-visible">
+      <div class="mb-6 flex gap-2 items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap -mx-4 px-4 md:flex-wrap md:overflow-visible section-filter-bar">
         <button type="button" class="proj-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 hover:text-primary"
                 data-filter="all" aria-pressed="true">All</button>
         <button type="button" class="proj-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 hover:text-primary"
@@ -642,10 +702,10 @@
       <div id="projGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- (All projects) -->
         <!-- SPACE42 — EW / REP -->
-        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+        <article class="proj-card h-full group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
                  data-company="Space42" data-domain="EW"
                  data-keywords="electronic warfare ew alerts rep recognized picture sensor fusion comint elint radar reporting automation">
-          <div class="p-5 md:p-6">
+          <div class="p-5 md:p-6 flex flex-col h-full">
             <div class="flex items-start gap-4">
               <img src="https://placehold.co/320x200/081226/ffffff?text=EW+Ops"
                    alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" loading="lazy" decoding="async"/>
@@ -691,7 +751,7 @@
             <button class="mt-3 text-sm font-semibold text-primary underline underline-offset-2"
                     type="button" data-more="#ew-more">More details</button>
             <div id="ew-more" class="hidden mt-3 text-sm text-gray-700">
-              <div class="grid md:grid-cols-2 gap-3">
+              <div class="grid grid-cols-1 gap-3">
                 <ul class="list-disc ps-5 space-y-1.5">
                   <li>Discovery with EW operators & planners</li>
                   <li>REP model: tracks, emitters, links, confidence</li>
@@ -709,10 +769,10 @@
         </article>
 
         <!-- SPACE42 — Ajman Digital Twin -->
-        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+        <article class="proj-card h-full group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
                  data-company="Space42" data-domain="DigitalTwin"
                  data-keywords="digital twin ajman kpi dashboards safety economy liveability tourism utilities transport overlays dark mode personas">
-          <div class="p-5 md:p-6">
+          <div class="p-5 md:p-6 flex flex-col h-full">
             <div class="flex items-start gap-4">
               <img src="https://placehold.co/320x200/0D6EFD/ffffff?text=Ajman+DT"
                    alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" loading="lazy" decoding="async"/>
@@ -757,7 +817,7 @@
             <button class="mt-3 text-sm font-semibold text-primary underline underline-offset-2"
                     type="button" data-more="#adt-more">More details</button>
             <div id="adt-more" class="hidden mt-3 text-sm text-gray-700">
-              <div class="grid md:grid-cols-2 gap-3">
+              <div class="grid grid-cols-1 gap-3">
                 <ul class="list-disc ps-5 space-y-1.5">
                   <li>KPI taxonomy & acceptance criteria</li>
                   <li>Overlay spec: hotspots, density, scenarios</li>
@@ -774,10 +834,10 @@
         </article>
 
         <!-- UAE EXCHANGE — Dynamic Pricing Engine -->
-        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+        <article class="proj-card h-full group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
                  data-company="UAE-Exchange" data-domain="FinTech"
                  data-keywords="dynamic pricing fx fees remittance corridor elasticity rules ml ab-test compliance guardrails override api">
-          <div class="p-5 md:p-6">
+          <div class="p-5 md:p-6 flex flex-col h-full">
             <div class="flex items-start gap-4">
               <img src="https://placehold.co/320x200/0D6EFD/ffffff?text=Pricing"
                    alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" loading="lazy" decoding="async"/>
@@ -812,7 +872,7 @@
             <button class="mt-3 text-sm font-semibold text-primary underline underline-offset-2"
                     type="button" data-more="#pricing-more">More details</button>
             <div id="pricing-more" class="hidden mt-3 text-sm text-gray-700">
-              <div class="grid md:grid-cols-2 gap-3">
+              <div class="grid grid-cols-1 gap-3">
                 <ul class="list-disc ps-5 space-y-1.5">
                   <li>Policy: corridor rules, segments, guardrails</li>
                   <li>Service contract: quote/commit/override</li>
@@ -829,10 +889,10 @@
         </article>
 
         <!-- UAE EXCHANGE — Utility Payments & Mobile Top-ups -->
-        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+        <article class="proj-card h-full group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
                  data-company="UAE-Exchange" data-domain="Payments"
                  data-keywords="utility bill pay water electricity gas internet telecom gulf gcc psp credit card 3ds tokenization reconciliation ezetop topups">
-          <div class="p-5 md:p-6">
+          <div class="p-5 md:p-6 flex flex-col h-full">
             <div class="flex items-start gap-4">
               <img src="https://placehold.co/320x200/12A87E/ffffff?text=Bill+Pay"
                    alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" loading="lazy" decoding="async"/>
@@ -867,10 +927,10 @@
         </article>
 
         <!-- UAE EXCHANGE — Hybrid Payment Mode (Split Tender) -->
-        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+        <article class="proj-card h-full group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
                  data-company="UAE-Exchange" data-domain="Payments"
                  data-keywords="hybrid split tender multi tender cash card multiple cards partial auth 3ds2 reconciliation receipts">
-          <div class="p-5 md:p-6">
+          <div class="p-5 md:p-6 flex flex-col h-full">
             <div class="flex items-start gap-4">
               <img src="https://placehold.co/320x200/0D6EFD/ffffff?text=Split+Tender"
                    alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" loading="lazy" decoding="async"/>
@@ -905,10 +965,10 @@
         </article>
 
         <!-- UAE EXCHANGE — FX Buyback -->
-        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+        <article class="proj-card h-full group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
                  data-company="UAE-Exchange" data-domain="FX"
                  data-keywords="buyback fx same rate guarantee 30 days voucher receipt qr policy eligibility caps teller pos web app refunds aml product owner business analyst">
-          <div class="p-5 md:p-6">
+          <div class="p-5 md:p-6 flex flex-col h-full">
             <div class="flex items-start gap-4">
               <img src="https://placehold.co/320x200/0D6EFD/ffffff?text=FX+Buyback"
                    alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" loading="lazy" decoding="async"/>
@@ -944,10 +1004,10 @@
         </article>
 
         <!-- UAE EXCHANGE — FX→FX -->
-        <article class="proj-card group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
+        <article class="proj-card h-full group rounded-2xl bg-white ring-1 ring-black/5 shadow hover:shadow-lg transition"
                  data-company="UAE-Exchange" data-domain="FX"
                  data-keywords="fx to fx cross currency triangulation rate lock change local teller single fee reconciliation aml">
-          <div class="p-5 md:p-6">
+          <div class="p-5 md:p-6 flex flex-col h-full">
             <div class="flex items-start gap-4">
               <img src="https://placehold.co/320x200/0D6EFD/ffffff?text=FX%E2%86%92FX"
                    alt="" class="w-28 h-20 object-cover rounded-lg ring-1 ring-black/5 flex-none" loading="lazy" decoding="async"/>
@@ -985,7 +1045,142 @@
     </div>
   </section>
   <!-- /PROJECTS -->
+  <!-- SKILLS -->
+<section id="skills" class="scroll-mt-24 section section-compact bg-white relative" aria-label="Skills">
+  <div class="container mx-auto px-4 sm:px-6">
+    <header class="text-center mb-4 md:mb-6">
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Core Competencies</h2>
+      <p class="text-gray-600 mt-2">Expertise across Program Management, Digital Transformation, GeoAI, Digital Twin and Financial technologies.</p>
+    </header>
 
+    <!-- Filters (sticky like Experience) -->
+    <div class="sticky top-[calc(var(--header-h)+8px)] z-40 bg-white/80 backdrop-blur supports-backdrop-blur:bg-white/70 -mx-6 px-6 py-2 mb-6">
+      <div class="flex gap-2 items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap -mx-4 px-4 md:flex-wrap md:overflow-visible section-filter-bar">
+        <button type="button" class="skill-filter2 px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="skill-filter2 px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="program" aria-pressed="false">Program/Project</button>
+        <button type="button" class="skill-filter2 px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="technical" aria-pressed="false">Technical</button>
+        <button type="button" class="skill-filter2 px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="domain" aria-pressed="false">Domain</button>
+        <button type="button" class="skill-filter2 px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="apps" aria-pressed="false">Business Apps</button>
+        <button type="button" class="skill-filter2 px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="tools" aria-pressed="false">Tools</button>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div id="skillGrid" class="max-w-5xl mx-auto grid sm:grid-cols-2 gap-4 md:gap-6">
+
+      <!-- Program & Project -->
+      <article class="skill-card h-full opacity-0 translate-y-3 transition duration-500 rounded-2xl bg-gradient-to-r from-emerald-50 to-white ring-1 ring-emerald-100 shadow" data-category="program">
+        <div class="p-5 flex flex-col h-full">
+          <div class="flex items-start gap-3">
+            <div class="shrink-0 rounded-lg bg-white ring-1 ring-emerald-200 p-2">
+              <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7v10M12 3v14m4-6v10"/></svg>
+            </div>
+            <h3 class="text-xl font-bold">1. Program &amp; Project Management</h3>
+          </div>
+          <div class="mt-3">
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-2.5 py-1 text-xs rounded-full bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200">Product Mgmt</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200">Program/Project</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200">New Product Launch</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200">Talent & Capability</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200">Functional Leadership</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Technical -->
+      <article class="skill-card h-full opacity-0 translate-y-3 transition duration-500 rounded-2xl bg-gradient-to-r from-indigo-50 to-white ring-1 ring-indigo-100 shadow" data-category="technical">
+        <div class="p-5 flex flex-col h-full">
+          <div class="flex items-start gap-3">
+            <div class="shrink-0 rounded-lg bg-white ring-1 ring-indigo-200 p-2">
+              <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M7 7v10m10-10v10M3 17h18"/></svg>
+            </div>
+            <h3 class="text-xl font-bold">2. Technical Expertise</h3>
+          </div>
+          <div class="mt-3">
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-2.5 py-1 text-xs rounded-full bg-indigo-100 text-indigo-800 ring-1 ring-indigo-200">Business Analysis</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-indigo-100 text-indigo-800 ring-1 ring-indigo-200">Process Re‑engineering</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-indigo-100 text-indigo-800 ring-1 ring-indigo-200">APIs</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Domain (merged & expanded) -->
+      <article class="skill-card h-full opacity-0 translate-y-3 transition duration-500 rounded-2xl bg-gradient-to-r from-cyan-50 to-white ring-1 ring-cyan-100 shadow sm:col-span-2" data-category="domain">
+        <div class="p-5 flex flex-col h-full">
+          <div class="flex items-start gap-3">
+            <div class="shrink-0 rounded-lg bg-white ring-1 ring-cyan-200 p-2">
+              <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 4-9 4-9-4 9-4zm0 8l9 4-9 4-9-4 9-4z"/></svg>
+            </div>
+            <h3 class="text-xl font-bold">3. Domain Knowledge</h3>
+          </div>
+          <div class="mt-3 flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 text-xs rounded-full bg-cyan-100 text-cyan-800 ring-1 ring-cyan-200">GeoAI</span>
+                  <span class="px-2.5 py-1 text-xs rounded-full bg-indigo-100 text-indigo-800 ring-1 ring-indigo-200">Digital Twin</span>
+                  <span class="px-2.5 py-1 text-xs rounded-full bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200">Payments</span>
+                  <span class="px-2.5 py-1 text-xs rounded-full bg-blue-100 text-blue-800 ring-1 ring-blue-200">FX</span>
+                  <span class="px-2.5 py-1 text-xs rounded-full bg-amber-100 text-amber-800 ring-1 ring-amber-200">AML/KYC</span>
+                  <span class="px-2.5 py-1 text-xs rounded-full bg-purple-100 text-purple-800 ring-1 ring-purple-200">Defense</span>
+                  <span class="px-2.5 py-1 text-xs rounded-full bg-rose-100 text-rose-800 ring-1 ring-rose-200">SaaS</span>
+                </div>
+        </div>
+      </article>
+
+      <!-- Business Apps -->
+      <article class="skill-card h-full opacity-0 translate-y-3 transition duration-500 rounded-2xl bg-gradient-to-r from-blue-50 to-white ring-1 ring-blue-100 shadow" data-category="apps">
+        <div class="p-5 flex flex-col h-full">
+          <div class="flex items-start gap-3">
+            <div class="shrink-0 rounded-lg bg-white ring-1 ring-blue-200 p-2">
+              <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            </div>
+            <h3 class="text-xl font-bold">4. Business Applications</h3>
+          </div>
+          <div class="mt-3">
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-2.5 py-1 text-xs rounded-full bg-blue-100 text-blue-800 ring-1 ring-blue-200">Forex Platform</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-blue-100 text-blue-800 ring-1 ring-blue-200">Financial Apps</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-blue-100 text-blue-800 ring-1 ring-blue-200">Remittance/Payroll</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-blue-100 text-blue-800 ring-1 ring-blue-200">Actimize/AMIGO</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-blue-100 text-blue-800 ring-1 ring-blue-200">UAEFTS/WPS/CBUAE</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-blue-100 text-blue-800 ring-1 ring-blue-200">SWIFT/EID</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-green-100 text-green-800 ring-1 ring-green-200">Banking APIs</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-pink-100 text-pink-800 ring-1 ring-pink-200">Mobile Apps</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Tools -->
+      <article class="skill-card h-full opacity-0 translate-y-3 transition duration-500 rounded-2xl bg-gradient-to-r from-amber-50 to-white ring-1 ring-amber-100 shadow" data-category="tools">
+        <div class="p-5 flex flex-col h-full">
+          <div class="flex items-start gap-3">
+            <div class="shrink-0 rounded-lg bg-white ring-1 ring-amber-200 p-2">
+              <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+            </div>
+            <h3 class="text-xl font-bold">5. Other Tools &amp; Technologies</h3>
+          </div>
+          <div class="mt-3">
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-2.5 py-1 text-xs rounded-full bg-amber-100 text-amber-800 ring-1 ring-amber-200">MS Projects</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-amber-100 text-amber-800 ring-1 ring-amber-200">Jira</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-amber-100 text-amber-800 ring-1 ring-amber-200">Qlik</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-amber-100 text-amber-800 ring-1 ring-amber-200">Visio/Office</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-amber-100 text-amber-800 ring-1 ring-amber-200">HTML/CSS/JS</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-amber-100 text-amber-800 ring-1 ring-amber-200">Scrum/Agile</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-amber-100 text-amber-800 ring-1 ring-amber-200">AI/Chatbots</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-amber-100 text-amber-800 ring-1 ring-amber-200">Postman</span>
+              <span class="px-2.5 py-1 text-xs rounded-full bg-amber-100 text-amber-800 ring-1 ring-amber-200">Confluence</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- /SKILLS --> 
   <!-- APPROACH -->
   <section id="approach" class="mt-8 md:mt-8 pt-8 md:pt-10 pb-16 md:pb-20 bg-white" aria-label="Approach">
     <div class="container mx-auto px-4 sm:px-6">
@@ -993,7 +1188,7 @@
         <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">My Approach to Building Impactful Products</h2>
         <p class="text-gray-600 mt-3">4 simple phases: Discover → Plan → Build → Learn.</p>
       </header>
-
+      <div class="section-filter-bar"></div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <!-- Sticky visual / hero -->
         <div class="lg:sticky top-24 h-[64vh]">
@@ -1162,7 +1357,9 @@
         <button type="button" class="cert-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="SAFe" aria-pressed="true">SAFe</button>
         <button type="button" class="cert-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="Coursera" aria-pressed="false">Coursera</button>
       </div>
+      <div class="section-filter-bar"></div>
     </div>
+
       <!-- (Certification list) -->
       <ul id="certList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <li data-issuer="PMI" class="rounded-xl p-5 bg-gradient-to-r from-blue-50 to-white ring-1 ring-blue-100 shadow">
@@ -1865,5 +2062,331 @@
     sections.forEach((s) => observer.observe(s));
   }
 </script>
+<script>
+  // Reveal-on-scroll for skill cards
+  (function(){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach((e)=>{
+        if(e.isIntersecting){
+          e.target.classList.remove('opacity-0','translate-y-3');
+          e.target.classList.add('opacity-100','translate-y-0');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('#skills .skill-card').forEach(el=> io.observe(el));
+  })();
+
+  // Accordion toggles for Skills
+  (function(){
+    document.querySelectorAll('#skills .skill-more').forEach(btn => {
+      const sel = btn.getAttribute('data-target');
+      const panel = document.querySelector(sel);
+      if(!panel) return;
+      btn.addEventListener('click', ()=>{
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        panel.style.gridTemplateRows = expanded ? '0fr' : '1fr';
+      });
+    });
+  })();
+
+  // Skill filters + Expand All (mirrors Experience chips)
+  (function(){
+    const buttons = document.querySelectorAll('#skills .skill-filter');
+    const cards = document.querySelectorAll('#skills .skill-card');
+    const toggle = document.getElementById('skillToggleDetails');
+
+    function setPressed(target){
+      buttons.forEach(b => b.setAttribute('aria-pressed', String(b === target)));
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        setPressed(btn);
+        const filter = btn.getAttribute('data-filter');
+        cards.forEach(card => {
+          if(filter === 'all' || card.getAttribute('data-category') === filter){
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Expand/collapse all accordions in visible cards
+    toggle?.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      toggle.textContent = expanded ? 'Expand All' : 'Collapse All';
+      document.querySelectorAll('#skills .skill-more').forEach(btn => {
+        const panel = document.querySelector(btn.getAttribute('data-target'));
+        if(!panel) return;
+        btn.setAttribute('aria-expanded', String(!expanded));
+        panel.style.gridTemplateRows = expanded ? '0fr' : '1fr';
+      });
+    });
+  })();
+</script>
+<!-- SKILLS SCRIPTS -->
+<script>
+  // Reveal-on-scroll for skill cards (unchanged)
+  (function(){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach((e)=>{
+        if(e.isIntersecting){
+          e.target.classList.remove('opacity-0','translate-y-3');
+          e.target.classList.add('opacity-100','translate-y-0');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('#skills .skill-card').forEach(el=> io.observe(el));
+  })();
+
+  // Skills filters — multi-select like Experience (+ dynamic domain span)
+  (function(){
+    const section = document.querySelector('#skills');
+    if (!section) return;
+
+    const cards = Array.from(section.querySelectorAll('.skill-card'));
+    const domainCard = section.querySelector('.skill-card[data-category="domain"]');
+
+    function getButtons(){
+      return Array.from(section.querySelectorAll('.skill-filter2'));
+    }
+
+    function setPressed(btn, pressed){ if(btn) btn.setAttribute('aria-pressed', String(pressed)); }
+    function isPressed(btn){ return btn && btn.getAttribute('aria-pressed') === 'true'; }
+
+    function selectedCats(catBtns){
+      return catBtns.filter(isPressed).map(b => b.getAttribute('data-filter'));
+    }
+
+    function updateDomainSpan(sel){
+      if (!domainCard) return;
+      // Keep wide when All or only Domain is selected; otherwise make it single-column
+      if (!sel || sel.length === 0 || (sel.length === 1 && sel[0] === 'domain')){
+        domainCard.classList.add('sm:col-span-2');
+      } else {
+        domainCard.classList.remove('sm:col-span-2');
+      }
+    }
+
+    function showAll(){
+      cards.forEach(c => c.classList.remove('hidden'));
+      updateDomainSpan([]);
+    }
+
+    function apply(sel){
+      if (!sel || sel.length === 0){ showAll(); return; }
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        card.classList.toggle('hidden', sel.indexOf(cat) === -1);
+      });
+      updateDomainSpan(sel);
+    }
+
+    // Prepare buttons (clone to drop legacy listeners)
+    let buttons = getButtons();
+    if (!buttons.length) return;
+    let allBtn = buttons.find(b => b.getAttribute('data-filter') === 'all');
+    let catBtns = buttons.filter(b => b !== allBtn);
+
+    // Clone and rebuild handlers
+    [...buttons].forEach(btn => { const x = btn.cloneNode(true); btn.replaceWith(x); });
+    buttons = getButtons();
+    allBtn = buttons.find(b => b.getAttribute('data-filter') === 'all');
+    catBtns = buttons.filter(b => b !== allBtn);
+
+    // Init state
+    setPressed(allBtn, true);
+    catBtns.forEach(b => setPressed(b, false));
+    showAll();
+
+    function recomputeAndApply(){
+      const sel = selectedCats(catBtns);
+      if (sel.length === 0){ setPressed(allBtn, true); apply([]); return; }
+      setPressed(allBtn, false);
+      apply(sel);
+    }
+
+    // Category toggles (multi-select)
+    catBtns.forEach(btn => {
+      btn.addEventListener('click', (ev) => {
+        ev.stopImmediatePropagation();
+        setPressed(btn, !isPressed(btn));
+        recomputeAndApply();
+      });
+    });
+
+    // All resets
+    allBtn && allBtn.addEventListener('click', (ev) => {
+      ev.stopImmediatePropagation();
+      setPressed(allBtn, true);
+      catBtns.forEach(b => setPressed(b, false));
+      showAll();
+    });
+
+    // Card chips toggle their card's category
+    section.querySelectorAll('.skill-card .rounded-full').forEach(chip => {
+      const card = chip.closest('.skill-card');
+      if (!card) return;
+      const cat = card.getAttribute('data-category');
+      chip.style.cursor = 'pointer';
+      chip.setAttribute('title', 'Toggle filter');
+      chip.addEventListener('click', (ev) => {
+        ev.stopImmediatePropagation();
+        const targetBtn = section.querySelector(`.skill-filter2[data-filter="${cat}"]`);
+        if (!targetBtn) return;
+        targetBtn.click();
+      });
+    });
+  })();
+</script>
+<!-- /SKILLS SCRIPTS -->
+
+<!-- PROJECTS SCRIPTS -->
+<script>
+  (function(){
+    const section = document.querySelector('#projects');
+    if (!section) return;
+
+    const cards = Array.from(section.querySelectorAll('.proj-card'));
+    const buttons = Array.from(section.querySelectorAll('.proj-filter'));
+    const allBtn = buttons.find(b => b.getAttribute('data-filter') === 'all');
+    const catBtns = buttons.filter(b => b !== allBtn);
+    const search = section.querySelector('#projSearch');
+
+    function setPressed(btn, v){ btn?.setAttribute('aria-pressed', String(v)); }
+    function isPressed(btn){ return btn?.getAttribute('aria-pressed') === 'true'; }
+    function selectedCats(){ return catBtns.filter(isPressed).map(b => b.getAttribute('data-filter')); }
+
+    function textMatch(card, q){
+      if (!q) return true;
+      q = q.toLowerCase();
+      const kw = (card.getAttribute('data-keywords') || '').toLowerCase();
+      const txt = card.textContent.toLowerCase();
+      return kw.includes(q) || txt.includes(q);
+    }
+    function catMatch(card, sel){
+      if (!sel || sel.length === 0) return true; // All
+      const dom = card.getAttribute('data-domain');
+      const comp = card.getAttribute('data-company');
+      return sel.some(tag => tag.startsWith('domain:') ? `domain:${dom}` === tag : comp === tag);
+    }
+    function apply(){
+      const sel = selectedCats();
+      const q = (search?.value || '').trim();
+      setPressed(allBtn, sel.length === 0);
+      cards.forEach(card => {
+        const show = catMatch(card, sel) && textMatch(card, q);
+        card.classList.toggle('hidden', !show);
+      });
+    }
+
+    // init
+    setPressed(allBtn, true); catBtns.forEach(b => setPressed(b, false)); apply();
+
+    // drop legacy handlers and rewire
+    [...buttons].forEach(btn => { const c = btn.cloneNode(true); btn.replaceWith(c); });
+    const newButtons = Array.from(section.querySelectorAll('.proj-filter'));
+    const newAll = newButtons.find(b => b.getAttribute('data-filter') === 'all');
+    const newCats = newButtons.filter(b => b !== newAll);
+
+    newCats.forEach(btn => btn.addEventListener('click', e => {
+      e.stopImmediatePropagation();
+      setPressed(btn, !isPressed(btn));
+      setPressed(newAll, newCats.every(b => !isPressed(b)));
+      apply();
+    }));
+    newAll?.addEventListener('click', e => {
+      e.stopImmediatePropagation();
+      setPressed(newAll, true);
+      newCats.forEach(b => setPressed(b, false));
+      apply();
+    });
+
+    search?.addEventListener('input', apply);
+
+    // Make badges inside cards toggle their filter
+    section.querySelectorAll('.proj-card span[class*="rounded-md"], .proj-card span[class*="rounded-full"]').forEach(badge => {
+      badge.style.cursor = 'pointer';
+      badge.title = 'Toggle filter';
+      badge.addEventListener('click', e => {
+        e.stopImmediatePropagation();
+        const card = badge.closest('.proj-card');
+        if (!card) return;
+        const dom = card.getAttribute('data-domain');
+        const btn = Array.from(section.querySelectorAll('.proj-filter')).find(b => b.getAttribute('data-filter') === `domain:${dom}`);
+        if (btn) btn.click();
+      });
+    });
+  })();
+</script>
+<!-- /PROJECTS SCRIPTS -->
+
+<!-- EXPERIENCE SCRIPTS -->
+<script>
+  (function(){
+    const section = document.querySelector('#experience');
+    if (!section) return;
+
+    const items = Array.from(section.querySelectorAll('ol > li[data-company]'));
+    const buttons = Array.from(section.querySelectorAll('.xp-filter'));
+    const allBtn = buttons.find(b => b.getAttribute('data-filter') === 'all');
+    const catBtns = buttons.filter(b => b !== allBtn);
+
+    function setPressed(btn, v){ btn?.setAttribute('aria-pressed', String(v)); }
+    function isPressed(btn){ return btn?.getAttribute('aria-pressed') === 'true'; }
+    function selectedCats(){ return catBtns.filter(isPressed).map(b => b.getAttribute('data-filter')); }
+
+    function apply(){
+      const sel = selectedCats();
+      const isAll = sel.length === 0;
+      setPressed(allBtn, isAll);
+      items.forEach(item => {
+        const comp = item.getAttribute('data-company');
+        item.classList.toggle('hidden', !isAll && !sel.includes(comp));
+      });
+    }
+
+    // init
+    setPressed(allBtn, true); catBtns.forEach(b => setPressed(b, false));
+    apply();
+
+    // drop legacy handlers and rewire
+    [...buttons].forEach(btn => { const c = btn.cloneNode(true); btn.replaceWith(c); });
+    const btns2 = Array.from(section.querySelectorAll('.xp-filter'));
+    const all2 = btns2.find(b => b.getAttribute('data-filter') === 'all');
+    const cats2 = btns2.filter(b => b !== all2);
+
+    cats2.forEach(btn => btn.addEventListener('click', e => {
+      e.stopImmediatePropagation();
+      setPressed(btn, !isPressed(btn));
+      setPressed(all2, cats2.every(b => !isPressed(b)));
+      apply();
+    }));
+    all2?.addEventListener('click', e => {
+      e.stopImmediatePropagation();
+      setPressed(all2, true);
+      cats2.forEach(b => setPressed(b, false));
+      apply();
+    });
+
+    // Keep existing Expand/Collapse all behavior
+    const toggle = section.querySelector('#xpToggleDetails');
+    if (toggle){
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        toggle.textContent = expanded ? 'Expand All' : 'Collapse All';
+        section.querySelectorAll('details').forEach(d => d.open = !expanded);
+      });
+    }
+  })();
+</script>
+<!-- /EXPERIENCE SCRIPTS -->
 </body>
 </html>
