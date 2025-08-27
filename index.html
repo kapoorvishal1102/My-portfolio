@@ -38,7 +38,6 @@
   :root { color-scheme: light dark; --brand:#16A34A; }
   html, body { height: 100%; }
   body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-  .hidden { display: none !important; }
 
   .nav-active { color: var(--brand); font-weight: 700; }
   #brandName,
@@ -185,20 +184,33 @@
       </ul>
     </nav>
 
-    <!-- Mobile menu -->
-    <div id="mobileMenu" class="md:hidden hidden border-t bg-white">
-      <ul class="container mx-auto px-4 sm:px-6 py-3 space-y-2">
-        <li><a class="block py-2" href="#home">Home</a></li>
-        <li><a class="block py-2" href="#about">About</a></li>
-        <li><a class="block py-2" href="#experience">Experience</a></li>
-        <li><a class="block py-2" href="#projects">Projects</a></li>
-        <li><a class="block py-2" href="#skills">Skills</a></li>
-        <li><a class="block py-2" href="#approach">Approach</a></li>
-        <li><a class="block py-2" href="#certifications">My Certifications</a></li>
-        <li><a class="block py-2" href="#contact">Contact</a></li>
-        <li><a class="block py-2" href="#booking">Meeting Request</a></li>
-      </ul>
-    </div>
+    <!-- Mobile drawer (right) + overlay -->
+    <div id="drawerOverlay" class="md:hidden fixed inset-0 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity z-40"></div>
+    <aside id="mobileDrawer" class="md:hidden fixed inset-y-0 right-0 w-[82vw] max-w-sm bg-white shadow-2xl ring-1 ring-black/10 translate-x-full transition-transform z-50" aria-hidden="true" aria-label="Mobile Navigation Drawer">
+      <div class="h-14 flex items-center justify-between px-4 border-b">
+        <span class="text-sm font-semibold text-slate-600">Menu</span>
+        <button id="drawerClose" class="inline-flex items-center gap-2 p-2 rounded-lg text-gray-700 hover:text-primary" aria-label="Close menu">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <nav class="h-[calc(100%-56px)] overflow-y-auto">
+        <ul class="px-4 py-3 space-y-1.5">
+          <li><a class="block py-2" href="#home">Home</a></li>
+          <li><a class="block py-2" href="#about">About</a></li>
+          <li><a class="block py-2" href="#experience">Experience</a></li>
+          <li><a class="block py-2" href="#projects">Projects</a></li>
+          <li><a class="block py-2" href="#skills">Skills</a></li>
+          <li><a class="block py-2" href="#approach">Approach</a></li>
+          <li><a class="block py-2" href="#certifications">My Certifications</a></li>
+          <li><a class="block py-2" href="#contact">Contact</a></li>
+          <li><a class="block py-2" href="#booking">Meeting Request</a></li>
+        </ul>
+      </nav>
+    </aside>
+      <!-- Mobile drawer drag handle -->
+      <div id="drawerHandle" class="md:hidden fixed top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-30 transition-opacity duration-300">
+        <div class="w-1.5 h-12 bg-emerald-600/80 rounded-full shadow"></div>
+      </div>
   </header>
 
 <main>
@@ -2016,32 +2028,93 @@
 </script>
 <!-- Additional scripts for mobile menu, scroll progress, and active nav link highlighting -->
 <script>
-  // Mobile menu toggle
+  // Mobile drawer (right) — toggles + gestures
+(function(){
   const menuBtn = document.getElementById('menuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  if (menuBtn && mobileMenu) {
-    menuBtn.setAttribute('aria-expanded', 'false');
-    menuBtn.addEventListener('click', () => {
-      const isOpen = !mobileMenu.classList.contains('hidden');
-      mobileMenu.classList.toggle('hidden');
-      menuBtn.setAttribute('aria-expanded', String(!isOpen));
-      document.body.classList.toggle('overflow-hidden', !isOpen);
-    });
-    mobileMenu.addEventListener('click', (e) => {
-      if (e.target.closest('a')) {
-        mobileMenu.classList.add('hidden');
-        menuBtn.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('overflow-hidden');
-      }
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        mobileMenu.classList.add('hidden');
-        menuBtn.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('overflow-hidden');
-      }
-    });
+  const drawer  = document.getElementById('mobileDrawer');
+  const closeBtn= document.getElementById('drawerClose');
+  const overlay = document.getElementById('drawerOverlay');
+
+  if (!drawer || !menuBtn || !overlay) return;
+
+  // ensure ARIA state
+  if (!menuBtn.hasAttribute('aria-expanded')) {
+    menuBtn.setAttribute('aria-expanded','false');
   }
+
+  let isOpen = false;
+
+    function openDrawer() {
+    drawer.classList.remove("translate-x-full");
+    drawer.classList.add("translate-x-0");
+    overlay.classList.remove("hidden");
+    document.body.classList.add("overflow-hidden");
+
+    // hide handle
+    handle.classList.add("opacity-0", "pointer-events-none");
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove("translate-x-0");
+    drawer.classList.add("translate-x-full");
+    overlay.classList.add("hidden");
+    document.body.classList.remove("overflow-hidden");
+
+    // show handle
+    handle.classList.remove("opacity-0", "pointer-events-none");
+  }
+
+  // Tap the hamburger to open
+  menuBtn.addEventListener('click', (e)=>{ e.preventDefault(); openDrawer(); });
+  const handle = document.getElementById('drawerHandle');
+    if (handle) {
+      handle.addEventListener('click', (e)=>{
+        e.preventDefault();
+        openDrawer();
+      });
+    }
+  // Close buttons/overlay
+  closeBtn && closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+
+  // Close when a menu link is chosen
+  drawer.addEventListener('click', (e)=>{
+    const a = e.target.closest('a[href^="#"]');
+    if (a) closeDrawer();
+  });
+
+  // ESC to close
+  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeDrawer(); });
+
+  // Edge-swipe to open from right edge (when closed)
+  let startX = null, startY = null, swiping = false;
+  window.addEventListener('touchstart', (e)=>{
+    if (isOpen) return;
+    const t = e.touches[0];
+    startX = t.clientX; startY = t.clientY;
+    swiping = (startX > window.innerWidth - 24); // 24px right edge
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (e)=>{
+    if (!swiping || isOpen) return;
+    const t = e.touches[0];
+    const dx = startX - t.clientX; // leftward swipe
+    if (Math.abs(t.clientY - startY) > 60) { swiping = false; return; }
+    if (dx > 50) { openDrawer(); swiping = false; }
+  }, { passive: true });
+
+  // Swipe right on the drawer to close
+  let dStartX = null, dStartY = null, dSwiping = false;
+  drawer.addEventListener('touchstart', (e)=>{ const t = e.touches[0]; dStartX = t.clientX; dStartY = t.clientY; dSwiping = true; }, { passive: true });
+  drawer.addEventListener('touchmove', (e)=>{
+    if (!dSwiping) return;
+    const t = e.touches[0];
+    const dx = t.clientX - dStartX; // rightward
+    if (Math.abs(t.clientY - dStartY) > 60) { dSwiping = false; return; }
+    if (dx > 50) { closeDrawer(); dSwiping = false; }
+  }, { passive: true });
+  drawer.addEventListener('touchend', ()=>{ dSwiping = false; });
+})();
 
   // Scroll progress bar
   const progress = document.getElementById('progress');
