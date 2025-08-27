@@ -38,6 +38,7 @@
   :root { color-scheme: light dark; --brand:#16A34A; }
   html, body { height: 100%; }
   body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+  .hidden { display: none !important; }
 
   .nav-active { color: var(--brand); font-weight: 700; }
   #brandName,
@@ -56,28 +57,33 @@
   /* Keep active nav links green */
   .nav-link.nav-active { color: var(--brand) !important; font-weight: 700; }
 
-  /* Unified hero chip style for Option 1 (Indigo + Amber) */
-  .chip-hero1 {
-    display:inline-flex;align-items:center;gap:.375rem;
-    padding:.375rem .75rem;
-    font-size:.875rem;line-height:1.25rem;
-    border-radius:9999px;
-    background:#E0E7FF; /* indigo-100 */
-    color:#3730A3; /* indigo-800 */
-    border:1px solid #C7D2FE; /* indigo-200 */
-    font-weight:600;
-    white-space:nowrap;
-  }
-  .chip-hero {
-    display:inline-flex;align-items:center;gap:.375rem;
-    padding:.375rem .75rem;
-    font-size:.875rem;line-height:1.25rem;
-    border-radius:9999px;
-    background:#FEF3C7; /* amber-100 */
-    color:#92400E; /* amber-800 */
-    border:1px solid #FDE68A; /* amber-200 */
-    white-space:nowrap;
-  }
+  /* Unified hero chip styles (brand-aligned) */
+.chip-hero1,
+.chip-hero {
+  display:inline-flex;align-items:center;gap:.375rem;
+  padding:.375rem .75rem;
+  font-size:.875rem;line-height:1.25rem;
+  border-radius:9999px;
+  white-space:nowrap;
+  font-weight:600;
+}
+/* Header chips (primary, solid) */
+.chip-hero1 {
+  background: #16A34A;            /* solid brand fill */
+  color: #ffffff;                 /* white text for contrast */
+  border: 1px solid #16A34A;      /* solid ring */
+  text-transform: uppercase;      /* read as heading */
+  letter-spacing: .04em;          /* subtle tracking */
+  font-weight: 700;               /* bolder than description */
+}
+
+/* Description chips (secondary, outline) */
+.chip-hero {
+  background: transparent;                            /* no fill */
+  color: #374151;                                     /* gray-700 */
+  border: 1px solid rgba(107, 114, 128, 0.35);        /* gray outline */
+  font-weight: 500;                                    /* lighter than header */
+}
 
   /* Mobile menu link colors */
   #mobileMenu a { color: #334155; }
@@ -201,12 +207,14 @@
   <div class="container mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center pt-10 md:pt-16 pb-8 md:pb-14">
     <!-- Left: copy -->
     <div class="max-w-2xl">
-      <p class="text-4xl font-semibold tracking-wide text-blue-900 uppercase">Hi, I’m Vishal Kumar</p>
+      <p class="text-lg font-normal text-slate-600 mt-2">
+        <span class="chip-hero1">Hi, I'm Vishal — Welcome to my portfolio.</span>
+      </p>
       <h1 class="mt-3 text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-slate-900">
         Senior Product Owner | AI • Defense • FinTech
       </h1>
       <p class="mt-5 text-lg md:text-xl text-slate-600">
-        14+ years delivering scalable, measurable products in <span class="font-semibold">FinTech</span>, 
+        15+ years delivering scalable, measurable products in <span class="font-semibold">FinTech</span>, 
         <span class="font-semibold">Defense</span>, and <span class="font-semibold">AI (GeoAI & Digital Twin)</span>. 
         I align stakeholders, ship fast in small slices, and track success through activation, time-to-value, and retention.
       </p>
@@ -382,15 +390,15 @@
 </section>
 <!--/ABOUT-->
   <!-- EXPERIENCE -->
-    <section id="experience" class="scroll-mt-24 section bg-white relative">
+    <section id="experience" class="scroll-mt-24 pt-10 md:pt-14 pb-10 md:pb-12 bg-white relative">
     <div class="container mx-auto px-4 sm:px-6">
       <header class="text-center mb-8 md:mb-10">
         <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Experience</h2>
         <p class="text-gray-600 mt-3">Impact stories across FinTech, Payments and Geospatial AI.</p>
         <br/>
         <!-- Experience filters -->
-      <div class="sticky top-[calc(var(--header-h)+8px)] z-40 bg-white/80 backdrop-blur supports-backdrop-blur:bg-white/70 -mx-6 px-6 py-2 mb-6">
-        <div class="flex gap-2 items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap -mx-4 px-4 md:flex-wrap md:overflow-visible section-filter-bar">
+      <div class="sticky top-[calc(var(--header-h)+8px)] z-40 bg-white/80 backdrop-blur supports-backdrop-blur:bg-white/70 -mx-6 px-6 py-2 mb-6 border-b border-gray-200/60">
+        <div class="flex gap-2 items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap -mx-4 px-4 md:flex-wrap md:overflow-visible">
           <button type="button" class="xp-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="all" aria-pressed="true">All</button>
           <button type="button" class="xp-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="Space42" aria-pressed="false">Space42</button>
           <button type="button" class="xp-filter px-3 py-1.5 text-sm rounded-full ring-1 ring-gray-200 text-gray-700 hover:text-primary" data-filter="UAE-Exchange" aria-pressed="false">UAE-Exchange</button>
@@ -399,12 +407,12 @@
       </div>
       </header>
       <div class="relative">
-        <span class="hidden lg:block absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-blue-100 via-blue-200 to-transparent"></span>
+        <span class="absolute left-3 md:left-4 top-0 bottom-0 w-px bg-gradient-to-b from-blue-100 via-blue-200 to-transparent"></span>
 
-        <ol class="space-y-10">
+        <ol class="space-y-10 md:space-y-12 relative">
           <!-- ROLE 1 — Space42 -->
           <li class="relative pl-14" data-company="Space42">
-            <span class="hidden lg:block absolute left-4 top-5 w-5 h-5 rounded-full bg-primary shadow-glow ring-4 ring-white"></span>
+            <span class="block absolute left-3 md:left-4 top-5 w-5 h-5 rounded-full bg-primary shadow-glow ring-4 ring-white"></span>
 
             <article class="xp-card group relative rounded-3xl bg-white p-7 shadow ring-1 ring-black/5">
               <div class="flex items-center gap-5">
@@ -495,7 +503,7 @@
 
           <!-- ROLE 2 — UAE Exchange -->
           <li class="relative pl-14" data-company="UAE-Exchange">
-            <span class="hidden lg:block absolute left-4 top-5 w-5 h-5 rounded-full bg-primary shadow-glow ring-4 ring-white"></span>
+            <span class="block absolute left-3 md:left-4 top-5 w-5 h-5 rounded-full bg-primary shadow-glow ring-4 ring-white"></span>
 
             <article class="xp-card group relative rounded-3xl bg-white p-7 shadow ring-1 ring-black/5">
               <div class="flex items-center gap-5">
@@ -581,7 +589,7 @@
 
           <!-- ROLE 3 — UAE Exchange (earlier) -->
           <li class="relative pl-14" data-company="UAE-Exchange">
-            <span class="hidden lg:block absolute left-4 top-5 w-5 h-5 rounded-full bg-primary shadow-glow ring-4 ring-white"></span>
+            <span class="block absolute left-3 md:left-4 top-5 w-5 h-5 rounded-full bg-primary shadow-glow ring-4 ring-white"></span>
 
             <article class="xp-card group relative rounded-3xl bg-white p-7 shadow ring-1 ring-black/5">
               <div class="flex items-center gap-5">
@@ -663,8 +671,9 @@
             </article>
           </li>
         </ol>
+
         <!-- CV button -->
-        <div class="mt-8 mb-2">
+        <div class="mt-8">
           <a href="assets/Vishal-Kumar-CV.pdf" class="inline-flex items-center gap-2 border px-4 py-2 rounded-lg hover:shadow">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14m0 0-6-6m6 6 6-6"/></svg>
             Download full CV
@@ -673,7 +682,6 @@
       </div>
     </div>
   </section>
-  <!--/CV button-->
   <!-- /EXPERIENCE -->
   
   <!-- PROJECTS -->
@@ -1046,6 +1054,7 @@
   </section>
   <!-- /PROJECTS -->
   <!-- SKILLS -->
+<!-- SKILLS -->
 <section id="skills" class="scroll-mt-24 section section-compact bg-white relative" aria-label="Skills">
   <div class="container mx-auto px-4 sm:px-6">
     <header class="text-center mb-4 md:mb-6">
@@ -2246,147 +2255,5 @@
   })();
 </script>
 <!-- /SKILLS SCRIPTS -->
-
-<!-- PROJECTS SCRIPTS -->
-<script>
-  (function(){
-    const section = document.querySelector('#projects');
-    if (!section) return;
-
-    const cards = Array.from(section.querySelectorAll('.proj-card'));
-    const buttons = Array.from(section.querySelectorAll('.proj-filter'));
-    const allBtn = buttons.find(b => b.getAttribute('data-filter') === 'all');
-    const catBtns = buttons.filter(b => b !== allBtn);
-    const search = section.querySelector('#projSearch');
-
-    function setPressed(btn, v){ btn?.setAttribute('aria-pressed', String(v)); }
-    function isPressed(btn){ return btn?.getAttribute('aria-pressed') === 'true'; }
-    function selectedCats(){ return catBtns.filter(isPressed).map(b => b.getAttribute('data-filter')); }
-
-    function textMatch(card, q){
-      if (!q) return true;
-      q = q.toLowerCase();
-      const kw = (card.getAttribute('data-keywords') || '').toLowerCase();
-      const txt = card.textContent.toLowerCase();
-      return kw.includes(q) || txt.includes(q);
-    }
-    function catMatch(card, sel){
-      if (!sel || sel.length === 0) return true; // All
-      const dom = card.getAttribute('data-domain');
-      const comp = card.getAttribute('data-company');
-      return sel.some(tag => tag.startsWith('domain:') ? `domain:${dom}` === tag : comp === tag);
-    }
-    function apply(){
-      const sel = selectedCats();
-      const q = (search?.value || '').trim();
-      setPressed(allBtn, sel.length === 0);
-      cards.forEach(card => {
-        const show = catMatch(card, sel) && textMatch(card, q);
-        card.classList.toggle('hidden', !show);
-      });
-    }
-
-    // init
-    setPressed(allBtn, true); catBtns.forEach(b => setPressed(b, false)); apply();
-
-    // drop legacy handlers and rewire
-    [...buttons].forEach(btn => { const c = btn.cloneNode(true); btn.replaceWith(c); });
-    const newButtons = Array.from(section.querySelectorAll('.proj-filter'));
-    const newAll = newButtons.find(b => b.getAttribute('data-filter') === 'all');
-    const newCats = newButtons.filter(b => b !== newAll);
-
-    newCats.forEach(btn => btn.addEventListener('click', e => {
-      e.stopImmediatePropagation();
-      setPressed(btn, !isPressed(btn));
-      setPressed(newAll, newCats.every(b => !isPressed(b)));
-      apply();
-    }));
-    newAll?.addEventListener('click', e => {
-      e.stopImmediatePropagation();
-      setPressed(newAll, true);
-      newCats.forEach(b => setPressed(b, false));
-      apply();
-    });
-
-    search?.addEventListener('input', apply);
-
-    // Make badges inside cards toggle their filter
-    section.querySelectorAll('.proj-card span[class*="rounded-md"], .proj-card span[class*="rounded-full"]').forEach(badge => {
-      badge.style.cursor = 'pointer';
-      badge.title = 'Toggle filter';
-      badge.addEventListener('click', e => {
-        e.stopImmediatePropagation();
-        const card = badge.closest('.proj-card');
-        if (!card) return;
-        const dom = card.getAttribute('data-domain');
-        const btn = Array.from(section.querySelectorAll('.proj-filter')).find(b => b.getAttribute('data-filter') === `domain:${dom}`);
-        if (btn) btn.click();
-      });
-    });
-  })();
-</script>
-<!-- /PROJECTS SCRIPTS -->
-
-<!-- EXPERIENCE SCRIPTS -->
-<script>
-  (function(){
-    const section = document.querySelector('#experience');
-    if (!section) return;
-
-    const items = Array.from(section.querySelectorAll('ol > li[data-company]'));
-    const buttons = Array.from(section.querySelectorAll('.xp-filter'));
-    const allBtn = buttons.find(b => b.getAttribute('data-filter') === 'all');
-    const catBtns = buttons.filter(b => b !== allBtn);
-
-    function setPressed(btn, v){ btn?.setAttribute('aria-pressed', String(v)); }
-    function isPressed(btn){ return btn?.getAttribute('aria-pressed') === 'true'; }
-    function selectedCats(){ return catBtns.filter(isPressed).map(b => b.getAttribute('data-filter')); }
-
-    function apply(){
-      const sel = selectedCats();
-      const isAll = sel.length === 0;
-      setPressed(allBtn, isAll);
-      items.forEach(item => {
-        const comp = item.getAttribute('data-company');
-        item.classList.toggle('hidden', !isAll && !sel.includes(comp));
-      });
-    }
-
-    // init
-    setPressed(allBtn, true); catBtns.forEach(b => setPressed(b, false));
-    apply();
-
-    // drop legacy handlers and rewire
-    [...buttons].forEach(btn => { const c = btn.cloneNode(true); btn.replaceWith(c); });
-    const btns2 = Array.from(section.querySelectorAll('.xp-filter'));
-    const all2 = btns2.find(b => b.getAttribute('data-filter') === 'all');
-    const cats2 = btns2.filter(b => b !== all2);
-
-    cats2.forEach(btn => btn.addEventListener('click', e => {
-      e.stopImmediatePropagation();
-      setPressed(btn, !isPressed(btn));
-      setPressed(all2, cats2.every(b => !isPressed(b)));
-      apply();
-    }));
-    all2?.addEventListener('click', e => {
-      e.stopImmediatePropagation();
-      setPressed(all2, true);
-      cats2.forEach(b => setPressed(b, false));
-      apply();
-    });
-
-    // Keep existing Expand/Collapse all behavior
-    const toggle = section.querySelector('#xpToggleDetails');
-    if (toggle){
-      toggle.addEventListener('click', () => {
-        const expanded = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', String(!expanded));
-        toggle.textContent = expanded ? 'Expand All' : 'Collapse All';
-        section.querySelectorAll('details').forEach(d => d.open = !expanded);
-      });
-    }
-  })();
-</script>
-<!-- /EXPERIENCE SCRIPTS -->
 </body>
 </html>
