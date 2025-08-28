@@ -167,7 +167,7 @@
     <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center" aria-label="Primary">
       <a id="brandName" href="#home" class="text-xl font-extrabold tracking-tight text-primary">Vishal Kumar</a>
 
-      <button id="menuBtn" class="md:hidden inline-flex items-center gap-2 text-gray-700 hover:text-primary" aria-label="Open menu">
+      <button id="menuBtn" class="md:hidden inline-flex items-center gap-2 text-gray-700 hover:text-primary" aria-label="Open menu" aria-expanded="false">
         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
 
@@ -183,35 +183,244 @@
         <li><a href="#booking" class="nav-link text-gray-600 hover:text-primary transition">Meeting Request</a></li>
       </ul>
     </nav>
-
     <!-- Mobile drawer (right) + overlay -->
-    <div id="drawerOverlay" class="md:hidden fixed inset-0 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity z-40"></div>
-    <aside id="mobileDrawer" class="md:hidden fixed inset-y-0 right-0 w-[82vw] max-w-sm bg-white shadow-2xl ring-1 ring-black/10 translate-x-full transition-transform z-50" aria-hidden="true" aria-label="Mobile Navigation Drawer">
-      <div class="h-14 flex items-center justify-between px-4 border-b">
-        <span class="text-sm font-semibold text-slate-600">Menu</span>
-        <button id="drawerClose" class="inline-flex items-center gap-2 p-2 rounded-lg text-gray-700 hover:text-primary" aria-label="Close menu">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <nav class="h-[calc(100%-56px)] overflow-y-auto">
-        <ul class="px-4 py-3 space-y-1.5">
-          <li><a class="block py-2" href="#home">Home</a></li>
-          <li><a class="block py-2" href="#about">About</a></li>
-          <li><a class="block py-2" href="#experience">Experience</a></li>
-          <li><a class="block py-2" href="#projects">Projects</a></li>
-          <li><a class="block py-2" href="#skills">Skills</a></li>
-          <li><a class="block py-2" href="#approach">Approach</a></li>
-          <li><a class="block py-2" href="#certifications">My Certifications</a></li>
-          <li><a class="block py-2" href="#contact">Contact</a></li>
-          <li><a class="block py-2" href="#booking">Meeting Request</a></li>
-        </ul>
-      </nav>
-    </aside>
-      <!-- Mobile drawer drag handle -->
-      <div id="drawerHandle" class="md:hidden fixed top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-30 transition-opacity duration-300">
-        <div class="w-1.5 h-12 bg-emerald-600/80 rounded-full shadow"></div>
-      </div>
   </header>
+
+<!-- Mobile drawer (right) + overlay (moved outside header) -->
+<div id="drawerOverlay" class="md:hidden fixed inset-0 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity z-[60]"></div>
+<aside id="mobileDrawer" class="md:hidden fixed inset-y-0 right-0 w-[82vw] max-w-sm bg-white shadow-2xl ring-1 ring-black/10 translate-x-full transition-transform z-[70]" aria-hidden="true" aria-label="Mobile Navigation Drawer">
+  <div class="h-14 flex items-center justify-between px-4 border-b">
+    <span class="text-sm font-semibold text-slate-600">Menu</span>
+    <button id="drawerClose" class="inline-flex items-center gap-2 p-2 rounded-lg text-gray-700 hover:text-primary" aria-label="Close menu">
+      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="h-[calc(100%-56px)] overflow-y-auto">
+    <ul class="px-4 py-3 space-y-1.5">
+      <li><a class="block py-2" href="#home">Home</a></li>
+      <li><a class="block py-2" href="#about">About</a></li>
+      <li><a class="block py-2" href="#experience">Experience</a></li>
+      <li><a class="block py-2" href="#projects">Projects</a></li>
+      <li><a class="block py-2" href="#skills">Skills</a></li>
+      <li><a class="block py-2" href="#approach">Approach</a></li>
+      <li><a class="block py-2" href="#certifications">My Certifications</a></li>
+      <li><a class="block py-2" href="#contact">Contact</a></li>
+      <li><a class="block py-2" href="#booking">Meeting Request</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<!-- Mobile drawer drag handle (fades out when drawer opens) -->
+<div id="drawerHandle" class="md:hidden fixed top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-30 transition-opacity duration-300">
+  <div class="w-1.5 h-12 bg-emerald-600/80 rounded-full shadow"></div>
+</div>
+
+<script>
+(function(){
+  if (window.__vkDrawerInit) return; window.__vkDrawerInit = true;
+  const menuBtn = document.getElementById('menuBtn');
+  const drawer  = document.getElementById('mobileDrawer');
+  const closeBtn= document.getElementById('drawerClose');
+  const overlay = document.getElementById('drawerOverlay');
+  const handle  = document.getElementById('drawerHandle');
+  if (!drawer || !menuBtn || !overlay) return;
+
+  // Ensure ARIA state on button
+  if (!menuBtn.hasAttribute('aria-expanded')) menuBtn.setAttribute('aria-expanded','false');
+
+  function showHandle(show){
+    if (!handle) return;
+    if (show){ handle.classList.remove('opacity-0','pointer-events-none'); }
+    else { handle.classList.add('opacity-0','pointer-events-none'); }
+  }
+
+  let isOpen = false;
+
+  function openDrawer(){
+    if (isOpen) return; isOpen = true;
+    drawer.classList.remove('translate-x-full');
+    drawer.classList.add('translate-x-0');
+    overlay.classList.remove('pointer-events-none');
+    overlay.classList.remove('opacity-0');
+    overlay.classList.add('opacity-100');
+    menuBtn.setAttribute('aria-expanded','true');
+    drawer.setAttribute('aria-hidden','false');
+    document.body.classList.add('overflow-hidden');
+    showHandle(false);
+    const first = drawer.querySelector('a,button'); first && first.focus({ preventScroll: true });
+  }
+  function closeDrawer(){
+    if (!isOpen) return; isOpen = false;
+    drawer.classList.add('translate-x-full');
+    drawer.classList.remove('translate-x-0');
+    overlay.classList.add('pointer-events-none');
+    overlay.classList.remove('opacity-100');
+    overlay.classList.add('opacity-0');
+    menuBtn.setAttribute('aria-expanded','false');
+    drawer.setAttribute('aria-hidden','true');
+    document.body.classList.remove('overflow-hidden');
+    showHandle(true);
+  }
+
+  // Open/close triggers
+  menuBtn.addEventListener('click', (e)=>{ e.preventDefault(); openDrawer(); });
+  closeBtn && closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+
+  // Close when selecting a link
+  drawer.addEventListener('click', (e)=>{ const a = e.target.closest('a[href^="#"]'); if (a) closeDrawer(); });
+
+  // ESC closes
+  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeDrawer(); });
+
+  // Handle tap to open
+  handle && handle.addEventListener('click', (e)=>{ e.preventDefault(); openDrawer(); });
+
+  // Edge-swipe to open (from right edge)
+  let startX=null, startY=null, swiping=false;
+  window.addEventListener('touchstart', (e)=>{
+    if (isOpen) return; const t=e.touches[0];
+    startX=t.clientX; startY=t.clientY; swiping=(startX > window.innerWidth - 24);
+  }, { passive:true });
+  window.addEventListener('touchmove', (e)=>{
+    if (!swiping || isOpen) return;
+    const t=e.touches[0]; const dx = startX - t.clientX; // leftward
+    if (Math.abs(t.clientY - startY) > 60) { swiping = false; return; }
+    if (dx > 50) { openDrawer(); swiping = false; }
+  }, { passive:true });
+
+  // Swipe right on the drawer to close
+  let dStartX=null, dStartY=null, dSwiping=false;
+  drawer.addEventListener('touchstart', (e)=>{ const t=e.touches[0]; dStartX=t.clientX; dStartY=t.clientY; dSwiping=true; }, { passive:true });
+  drawer.addEventListener('touchmove', (e)=>{
+    if (!dSwiping) return;
+    const t=e.touches[0]; const dx = t.clientX - dStartX; // rightward
+    if (Math.abs(t.clientY - dStartY) > 60) { dSwiping = false; return; }
+    if (dx > 50) { closeDrawer(); dSwiping = false; }
+  }, { passive:true });
+  drawer.addEventListener('touchend', ()=>{ dSwiping = false; });
+})();
+</script>
+
+<!-- Next-interest vote (chips + free text) -->
+<div id="nextInterest" class="hidden fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-[420px] z-40 rounded-2xl border border-slate-200 bg-white/95 backdrop-blur p-4 shadow">
+  <div class="flex items-start gap-3">
+    <div class="shrink-0 h-8 w-8 rounded-full bg-emerald-100 ring-1 ring-emerald-200 flex items-center justify-center" aria-hidden="true">📌</div>
+    <div class="flex-1">
+      <p class="text-sm text-slate-800 font-semibold">What should I show next?</p>
+      <p class="text-xs text-slate-600 mt-0.5">Pick one or type your own idea.</p>
+
+      <!-- Preset choices -->
+      <div class="mt-2 flex flex-wrap items-center gap-2" role="group" aria-label="Choose next topic">
+        <button class="ni-chip px-3 py-1.5 text-sm rounded-full ring-1 ring-emerald-200 text-emerald-700 hover:bg-emerald-50" data-choice="Digital Twin">Digital Twin</button>
+        <button class="ni-chip px-3 py-1.5 text-sm rounded-full ring-1 ring-sky-200 text-sky-700 hover:bg-sky-50" data-choice="EW / Defense">EW / Defense</button>
+        <button class="ni-chip px-3 py-1.5 text-sm rounded-full ring-1 ring-indigo-200 text-indigo-700 hover:bg-indigo-50" data-choice="FinTech">FinTech</button>
+      </div>
+
+      <!-- Free text idea -->
+      <div class="mt-3 flex gap-2">
+        <label for="nextOtherInput" class="sr-only">Other idea</label>
+        <input id="nextOtherInput" type="text" placeholder="Other idea…" class="flex-1 px-3 py-2 text-sm rounded-lg ring-1 ring-slate-200 focus:ring-2 focus:ring-primary outline-none" />
+        <button id="submitOtherChoice" type="button" class="px-3 py-2 text-sm font-semibold rounded-lg bg-primary text-white hover:shadow">Submit</button>
+      </div>
+
+      <div class="mt-2 flex items-center gap-3">
+        <button id="niDismiss" class="text-xs text-slate-500 hover:underline" type="button" aria-label="Dismiss">Dismiss</button>
+        <span id="niThanks" class="text-xs text-emerald-700 hidden">Thanks — noted.</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Next-interest vote script (records every click; supports free-text; DOM-ready; no unique gating) -->
+<script>
+(function initNextInterest(){
+  if (window.__vkNextInterestInit) return; // prevent double init
+  function start(){
+    const box = document.getElementById('nextInterest');
+    if (!box) return;
+
+    const chips = box.querySelectorAll('.ni-chip');
+    const otherInput = document.getElementById('nextOtherInput');
+    const otherBtn   = document.getElementById('submitOtherChoice');
+    const thanks     = document.getElementById('niThanks');
+    const dismiss    = document.getElementById('niDismiss');
+
+    // State: allow multiple appearances until a submission happens
+    let hasSubmitted = false;
+    let isShown = false;
+
+    function sendVote(choice){
+      // Fire-and-forget Formspree POST
+      try {
+        fetch('https://formspree.io/f/mqadkrna', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject: 'NextInterest vote',
+            choice,
+            path: location.pathname + location.search + location.hash,
+            ts: new Date().toISOString(),
+            ua: navigator.userAgent
+          })
+        });
+      } catch(_){/* ignore */}
+    }
+
+    function showBox(){ if (!isShown){ box.classList.remove('hidden'); isShown = true; } }
+    function hideBox(){ if (isShown){ box.classList.add('hidden'); isShown = false; } }
+
+    // Preset chips
+    chips.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const choice = btn.getAttribute('data-choice') || btn.textContent.trim() || 'Unknown';
+        sendVote(choice);
+        hasSubmitted = true;
+        thanks && thanks.classList.remove('hidden');
+        setTimeout(() => hideBox(), 1400);
+      });
+    });
+
+    // Free-text idea
+    if (otherBtn) {
+      otherBtn.addEventListener('click', () => {
+        const val = (otherInput?.value || '').trim();
+        if (!val) { otherInput?.focus(); return; }
+        sendVote(val);
+        hasSubmitted = true;
+        thanks && thanks.classList.remove('hidden');
+        setTimeout(() => hideBox(), 1400);
+      });
+    }
+
+    // Dismiss hides for now; can reappear on next threshold crossing
+    dismiss && dismiss.addEventListener('click', () => hideBox());
+
+    // Show at ~60% of scrollable height; hide above it — until submitted
+    function pct(){
+      const doc = document.documentElement;
+      const scrollable = doc.scrollHeight - window.innerHeight;
+      return scrollable > 0 ? (window.scrollY / scrollable) : 1; // tiny pages → treat as fully scrolled
+    }
+    function onScroll(){
+      if (hasSubmitted) return; // after submit, never show again this visit
+      const past = pct() > 0.6;
+      if (past) showBox(); else hideBox();
+    }
+
+    // Wire and run once
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('load', onScroll);
+    onScroll();
+
+    window.__vkNextInterestInit = true;
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else {
+    start();
+  }
+})();
+</script>
 
 <main>
   <!-- HERO -->
@@ -1096,7 +1305,7 @@
             <div class="shrink-0 rounded-lg bg-white ring-1 ring-emerald-200 p-2">
               <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7v10M12 3v14m4-6v10"/></svg>
             </div>
-            <h3 class="text-xl font-bold">1. Program &amp; Project Management</h3>
+            <h3 class="text-xl font-bold">1. Product & Program Management</h3>
           </div>
           <div class="mt-3">
             <div class="mt-3 flex flex-wrap gap-2">
@@ -2029,92 +2238,98 @@
 <!-- Additional scripts for mobile menu, scroll progress, and active nav link highlighting -->
 <script>
   // Mobile drawer (right) — toggles + gestures
-(function(){
-  const menuBtn = document.getElementById('menuBtn');
-  const drawer  = document.getElementById('mobileDrawer');
-  const closeBtn= document.getElementById('drawerClose');
-  const overlay = document.getElementById('drawerOverlay');
+  (function(){
+    const menuBtn = document.getElementById('menuBtn');
+    const drawer  = document.getElementById('mobileDrawer');
+    const closeBtn= document.getElementById('drawerClose');
+    const overlay = document.getElementById('drawerOverlay');
+    const handle  = document.getElementById('drawerHandle');
 
-  if (!drawer || !menuBtn || !overlay) return;
+    if (!drawer || !menuBtn || !overlay) return;
 
-  // ensure ARIA state
-  if (!menuBtn.hasAttribute('aria-expanded')) {
-    menuBtn.setAttribute('aria-expanded','false');
-  }
-
-  let isOpen = false;
-
-    function openDrawer() {
-    drawer.classList.remove("translate-x-full");
-    drawer.classList.add("translate-x-0");
-    overlay.classList.remove("hidden");
-    document.body.classList.add("overflow-hidden");
-
-    // hide handle
-    handle.classList.add("opacity-0", "pointer-events-none");
-  }
-
-  function closeDrawer() {
-    drawer.classList.remove("translate-x-0");
-    drawer.classList.add("translate-x-full");
-    overlay.classList.add("hidden");
-    document.body.classList.remove("overflow-hidden");
-
-    // show handle
-    handle.classList.remove("opacity-0", "pointer-events-none");
-  }
-
-  // Tap the hamburger to open
-  menuBtn.addEventListener('click', (e)=>{ e.preventDefault(); openDrawer(); });
-  const handle = document.getElementById('drawerHandle');
-    if (handle) {
-      handle.addEventListener('click', (e)=>{
-        e.preventDefault();
-        openDrawer();
-      });
+    // ensure ARIA state
+    if (!menuBtn.hasAttribute('aria-expanded')) {
+      menuBtn.setAttribute('aria-expanded','false');
     }
-  // Close buttons/overlay
-  closeBtn && closeBtn.addEventListener('click', closeDrawer);
-  overlay.addEventListener('click', closeDrawer);
 
-  // Close when a menu link is chosen
-  drawer.addEventListener('click', (e)=>{
-    const a = e.target.closest('a[href^="#"]');
-    if (a) closeDrawer();
-  });
+    let isOpen = false;
 
-  // ESC to close
-  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeDrawer(); });
+    function openDrawer(){
+      if (isOpen) return;
+      isOpen = true;
+      drawer.classList.remove('translate-x-full');
+      drawer.classList.add('translate-x-0');
+      overlay.classList.remove('pointer-events-none');
+      overlay.classList.remove('opacity-0');
+      overlay.classList.add('opacity-100');
+      menuBtn.setAttribute('aria-expanded','true');
+      drawer.setAttribute('aria-hidden','false');
+      document.body.classList.add('overflow-hidden');
+      // fade handle out
+      handle?.classList.add('opacity-0','pointer-events-none');
+    }
 
-  // Edge-swipe to open from right edge (when closed)
-  let startX = null, startY = null, swiping = false;
-  window.addEventListener('touchstart', (e)=>{
-    if (isOpen) return;
-    const t = e.touches[0];
-    startX = t.clientX; startY = t.clientY;
-    swiping = (startX > window.innerWidth - 24); // 24px right edge
-  }, { passive: true });
+    function closeDrawer(){
+      if (!isOpen) return;
+      isOpen = false;
+      drawer.classList.remove('translate-x-0');
+      drawer.classList.add('translate-x-full');
+      overlay.classList.add('pointer-events-none');
+      overlay.classList.remove('opacity-100');
+      overlay.classList.add('opacity-0');
+      menuBtn.setAttribute('aria-expanded','false');
+      drawer.setAttribute('aria-hidden','true');
+      document.body.classList.remove('overflow-hidden');
+      // show handle
+      handle?.classList.remove('opacity-0','pointer-events-none');
+    }
 
-  window.addEventListener('touchmove', (e)=>{
-    if (!swiping || isOpen) return;
-    const t = e.touches[0];
-    const dx = startX - t.clientX; // leftward swipe
-    if (Math.abs(t.clientY - startY) > 60) { swiping = false; return; }
-    if (dx > 50) { openDrawer(); swiping = false; }
-  }, { passive: true });
+    // Tap the hamburger or handle to open
+    menuBtn.addEventListener('click', (e)=>{ e.preventDefault(); openDrawer(); });
+    handle && handle.addEventListener('click', (e)=>{ e.preventDefault(); openDrawer(); });
 
-  // Swipe right on the drawer to close
-  let dStartX = null, dStartY = null, dSwiping = false;
-  drawer.addEventListener('touchstart', (e)=>{ const t = e.touches[0]; dStartX = t.clientX; dStartY = t.clientY; dSwiping = true; }, { passive: true });
-  drawer.addEventListener('touchmove', (e)=>{
-    if (!dSwiping) return;
-    const t = e.touches[0];
-    const dx = t.clientX - dStartX; // rightward
-    if (Math.abs(t.clientY - dStartY) > 60) { dSwiping = false; return; }
-    if (dx > 50) { closeDrawer(); dSwiping = false; }
-  }, { passive: true });
-  drawer.addEventListener('touchend', ()=>{ dSwiping = false; });
-})();
+    // Close buttons/overlay
+    closeBtn && closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+
+    // Close when a menu link is chosen
+    drawer.addEventListener('click', (e)=>{
+      const a = e.target.closest('a[href^="#"]');
+      if (a) closeDrawer();
+    });
+
+    // ESC to close
+    document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeDrawer(); });
+
+    // Edge-swipe to open from right edge (when closed)
+    let startX = null, startY = null, swiping = false;
+    window.addEventListener('touchstart', (e)=>{
+      if (isOpen) return;
+      const t = e.touches[0];
+      startX = t.clientX; startY = t.clientY;
+      swiping = (startX > window.innerWidth - 24); // 24px right edge
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e)=>{
+      if (!swiping || isOpen) return;
+      const t = e.touches[0];
+      const dx = startX - t.clientX; // leftward swipe
+      if (Math.abs(t.clientY - startY) > 60) { swiping = false; return; }
+      if (dx > 50) { openDrawer(); swiping = false; }
+    }, { passive: true });
+
+    // Swipe right on the drawer to close
+    let dStartX = null, dStartY = null, dSwiping = false;
+    drawer.addEventListener('touchstart', (e)=>{ const t = e.touches[0]; dStartX = t.clientX; dStartY = t.clientY; dSwiping = true; }, { passive: true });
+    drawer.addEventListener('touchmove', (e)=>{
+      if (!dSwiping) return;
+      const t = e.touches[0];
+      const dx = t.clientX - dStartX; // rightward
+      if (Math.abs(t.clientY - dStartY) > 60) { dSwiping = false; return; }
+      if (dx > 50) { closeDrawer(); dSwiping = false; }
+    }, { passive: true });
+    drawer.addEventListener('touchend', ()=>{ dSwiping = false; });
+  })();
 
   // Scroll progress bar
   const progress = document.getElementById('progress');
@@ -2328,5 +2543,66 @@
   })();
 </script>
 <!-- /SKILLS SCRIPTS -->
+ <!-- Next-interest vote (compact, confident) -->
+<div id="nextInterest" class="fixed bottom-4 right-4 bg-white shadow-xl rounded-lg p-4 max-w-xs z-[70] hidden">
+  <p class="mb-3 text-sm font-medium text-slate-700">
+    What should I work on next?
+  </p>
+  <div class="flex flex-wrap gap-2 mb-3">
+    <button data-choice="DigitalTwin"
+      class="px-3 py-1 text-sm rounded-full border border-emerald-400 text-emerald-700 hover:bg-emerald-50">
+      Digital Twin
+    </button>
+    <button data-choice="EW"
+      class="px-3 py-1 text-sm rounded-full border border-emerald-400 text-emerald-700 hover:bg-emerald-50">
+      EW
+    </button>
+    <button data-choice="FinTech"
+      class="px-3 py-1 text-sm rounded-full border border-emerald-400 text-emerald-700 hover:bg-emerald-50">
+      FinTech
+    </button>
+  </div>
+  <input id="nextOtherInput" type="text" placeholder="Other idea..."
+    class="w-full border rounded-md px-2 py-1 text-sm mb-3 focus:ring-emerald-500 focus:border-emerald-500"/>
+  <button id="submitOtherChoice"
+    class="w-full px-3 py-2 text-sm font-semibold bg-emerald-600 text-white rounded-md hover:bg-emerald-700">
+    Submit
+  </button>
+</div>
+<!-- Admin-only: View votes/results (appears with ?admin=1 or #admin) -->
+<div id="adminResultsBtn" class="hidden fixed bottom-4 right-4 z-[75]">
+  <button type="button"
+    class="px-3 py-2 text-sm font-semibold rounded-lg bg-slate-800 text-white shadow hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500">
+    View results (Formspree)
+  </button>
+</div>
+<script>
+(function(){
+  if (window.__vkAdminResultsInit) return; window.__vkAdminResultsInit = true;
+  const root = document.getElementById('adminResultsBtn');
+  if (!root) return;
+
+  // Show only if you visit with ?admin=1 or #admin
+  const isAdminVisit = /[?#](?:.*\badmin=1\b|admin\b)/i.test(location.search + location.hash);
+  if (!isAdminVisit) return;
+
+  root.classList.remove('hidden');
+  const btn = root.querySelector('button');
+  const FS_URL = 'https://formspree.io/forms/mqadkrna/submissions';
+
+  btn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    // Opens your Formspree Submissions page (log in to see data)
+    window.open(FS_URL, '_blank', 'noopener,noreferrer');
+  });
+
+  // Optional: Shift + D toggles visibility in admin visit
+  document.addEventListener('keydown', (e)=>{
+    if (e.shiftKey && (e.key === 'D' || e.key === 'd')){
+      root.classList.toggle('hidden');
+    }
+  });
+})();
+</script>
 </body>
 </html>
